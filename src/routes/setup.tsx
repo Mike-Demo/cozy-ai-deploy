@@ -1,9 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Wizard } from "@/components/Wizard";
+import { parsePermalinkSearch } from "@/lib/permalink";
 
 export const Route = createFileRoute("/setup")({
   staticData: { sitemap: true },
+  validateSearch: (search: Record<string, unknown>) => parsePermalinkSearch(search),
   component: SetupPage,
   head: () => ({
     meta: [

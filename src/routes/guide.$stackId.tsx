@@ -5,11 +5,14 @@ import { Logo } from "@/components/Logo";
 import { GuideWalkthrough } from "@/components/GuideWalkthrough";
 import { Troubleshooting } from "@/components/Troubleshooting";
 import { generateGuide } from "@/lib/generate";
+import { CopyLinkButton } from "@/components/CopyLinkButton";
+import { parsePermalinkSearch, resolveSelection } from "@/lib/permalink";
 
 const SITE_URL = "https://local.mikedemo.dev";
 
 export const Route = createFileRoute("/guide/$stackId")({
   staticData: { sitemap: true },
+  validateSearch: (search: Record<string, unknown>) => parsePermalinkSearch(search),
   component: GuidePage,
   head: ({ params }) => {
     const stack = getStackById(params.stackId);
@@ -70,17 +73,34 @@ export const Route = createFileRoute("/guide/$stackId")({
 
 function GuidePage() {
   const { stackId } = Route.useParams();
+  const search = Route.useSearch();
   const stack = getStackById(stackId);
 
   if (!stack) {
     throw notFound();
   }
 
+  // A shared link can narrow the guide to the models and options the sender
+  // picked; with no params we show everything.
+  const selection = resolveSelection({ ...search, stack: stackId });
+  const selectedModels =
+    selection.modelIds.length > 0
+      ? (stack.models ?? []).filter((m) => selection.modelIds.includes(m.id))
+      : (stack.models ?? []);
+  const selectedOptions =
+    selection.optionIds.length > 0
+      ? (stack.options ?? []).filter((o) => selection.optionIds.includes(o.id))
+      : (stack.options ?? []);
+
   const guide = generateGuide({
     stack,
-    selectedModels: stack.models ?? [],
-    selectedOptions: stack.options ?? [],
-    server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: "ubuntu-22.04" },
+    selectedModels,
+    selectedOptions,
+    server: {
+      ip: "YOUR_SERVER_IP",
+      username: "root",
+      operatingSystem: selection.operatingSystem ?? "ubuntu-22.04",
+    },
   });
 
   return (
@@ -101,6 +121,9 @@ function GuidePage() {
             </h1>
           </div>
           <p className="mt-2 text-text-muted">{stack.description}</p>
+          <div className="mt-4">
+            <CopyLinkButton label="Copy link to this guide" />
+          </div>
         </div>
 
         <div className="space-y-12">

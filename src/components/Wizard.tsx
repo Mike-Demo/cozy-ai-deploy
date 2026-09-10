@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { getStackById } from "@/data/stacks";
+import { getRouteApi } from "@tanstack/react-router";
+import { buildPermalinkSearch, resolveSelection } from "@/lib/permalink";
 import type { ServerDetails, WizardState } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { StepGuide } from "./StepGuide";
 import { StepOptions } from "./StepOptions";
 import { StepSelectStack } from "./StepSelectStack";
 import { StepServer } from "./StepServer";
+import { CopyLinkButton } from "./CopyLinkButton";
+
+const routeApi = getRouteApi("/setup");
 
 const initialServer: ServerDetails = {
   ip: "",
@@ -22,7 +28,50 @@ const initialState: WizardState = {
 };
 
 export function Wizard() {
-  const [state, setState] = useState<WizardState>(initialState);
+  const search = routeApi.useSearch();
+  const navigate = useNavigate({ from: "/setup" });
+
+  // Restore from the permalink once, on first render. Server details are never
+  // part of the link, so they always start blank.
+  const [state, setState] = useState<WizardState>(() => {
+    const resolved = resolveSelection(search);
+    if (!resolved.stackId) return initialState;
+    const stack = getStackById(resolved.stackId);
+    return {
+      step: resolved.step,
+      stackId: resolved.stackId,
+      selectedModelIds:
+        resolved.modelIds.length > 0
+          ? resolved.modelIds
+          : (stack?.models?.slice(0, 1).map((m) => m.id) ?? []),
+      selectedOptionIds: resolved.optionIds,
+      server: {
+        ...initialServer,
+        operatingSystem: resolved.operatingSystem ?? initialServer.operatingSystem,
+      },
+    };
+  });
+
+  // Keep the address bar in sync so the current link is always shareable.
+  const firstSync = useRef(true);
+  useEffect(() => {
+    const next = buildPermalinkSearch({
+      step: state.step,
+      stackId: state.stackId,
+      modelIds: state.selectedModelIds,
+      optionIds: state.selectedOptionIds,
+      operatingSystem: state.stackId ? state.server.operatingSystem : undefined,
+    });
+    void navigate({ search: next, replace: firstSync.current });
+    firstSync.current = false;
+  }, [
+    navigate,
+    state.step,
+    state.stackId,
+    state.selectedModelIds,
+    state.selectedOptionIds,
+    state.server.operatingSystem,
+  ]);
 
   const setStep = (step: number) => setState((s) => ({ ...s, step }));
 
@@ -162,7 +211,8 @@ export function Wizard() {
       </div>
 
       <div className="mt-6 flex items-center justify-between">
-        <button
+        <div className="flex items-center gap-3">
+          <button
           type="button"
           onClick={() => setStep(Math.max(0, state.step - 1))}
           disabled={state.step === 0}
@@ -173,8 +223,10 @@ export function Wizard() {
               : "bg-surface text-text hover:bg-surface-muted border border-border",
           )}
         >
-          Back
-        </button>
+            Back
+          </button>
+          {state.stackId && <CopyLinkButton label="Copy link to this setup" />}
+        </div>
         {state.step < 3 && (
           <button
             type="button"
