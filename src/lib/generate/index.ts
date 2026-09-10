@@ -101,7 +101,7 @@ function generateScript(
     `# ${stack.name} installer`,
     `# Generated for ${context.server.ip || "YOUR_SERVER_IP"}`,
     "",
-    "echo \"Starting installation of ${stack.name}...\"",
+    `echo "Starting installation of ${stack.name}..."`,
     "",
   ];
 
