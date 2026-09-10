@@ -55,7 +55,7 @@ export const Route = createFileRoute("/guide/$stackId")({
             "@type": "HowTo",
             name: `${stack.name} install guide`,
             description,
-            totalTime: `PT${stack.requirements.estimatedMinutes ?? 30}M`,
+            totalTime: stack.estimatedSetupTime,
             step: guide.steps.map((step, index) => ({
               "@type": "HowToStep",
               position: index + 1,
