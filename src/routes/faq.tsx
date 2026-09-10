@@ -18,9 +18,10 @@ export const Route = createFileRoute("/faq")({
           "Answers to common questions about installing Ollama, choosing an operating system, hardware requirements, and using Agent Deploy.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://local.mikedemo.dev/faq" },
       { name: "twitter:card", content: "summary_large_image" },
-      { rel: "canonical", href: "https://local.mikedemo.dev/faq" },
     ],
+    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/faq" }],
   }),
   component: FaqPage,
 });
