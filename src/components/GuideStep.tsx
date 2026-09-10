@@ -44,8 +44,8 @@ export function GuideStep({
           className={cn(
             "flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors",
             done
-              ? "bg-success text-white"
-              : "bg-accent-subtle text-accent hover:bg-accent hover:text-white",
+              ? "bg-success text-text-inverse"
+              : "bg-accent-subtle text-accent hover:bg-accent hover:text-text-inverse",
           )}
         >
           {done ? <i className="fa-solid fa-check" aria-hidden="true" /> : index + 1}
@@ -77,7 +77,7 @@ export function GuideStep({
               <button
                 type="button"
                 onClick={onNext}
-                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-white transition-colors hover:opacity-90"
+                className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-2 text-sm font-medium text-text-inverse transition-colors hover:opacity-90"
               >
                 <i className="fa-solid fa-check" aria-hidden="true" />
                 {isLast ? "Mark done, go to checks" : "Mark done, next step"}

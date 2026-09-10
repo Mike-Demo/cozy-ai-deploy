@@ -53,6 +53,11 @@ export function SiteFooter(): ReactElement {
           Agent Deploy generates guides locally in your browser. No server
           connection is made and no credentials are stored.
         </p>
+        <p className="text-text-muted max-w-2xl">
+          Disclaimer: these installation guides are provided as-is, without
+          warranty. Always review commands and back up your server before running
+          third-party software.
+        </p>
 
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex items-center gap-3 text-text-muted">
