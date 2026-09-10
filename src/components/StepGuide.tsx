@@ -5,6 +5,7 @@ import type { ServerDetails } from "@/lib/types";
 import { Checklist } from "./Checklist";
 import { CommandBlock } from "./CommandBlock";
 import { Troubleshooting } from "./Troubleshooting";
+import { ShareActions } from "./ShareActions";
 import { cn } from "@/lib/utils";
 
 interface StepGuideProps {
@@ -103,16 +104,12 @@ export function StepGuide({
             install script to your server and runs it.
           </p>
           <CommandBlock command={guide.oneLineCommand} />
-          <div className="flex flex-wrap gap-3">
-            <button
-              type="button"
-              onClick={downloadScript}
-              className="inline-flex items-center gap-2 rounded-xl bg-accent px-4 py-2.5 text-sm font-medium text-text-inverse hover:bg-accent-hover transition-colors"
-            >
-              <i className="fa-solid fa-download" />
-              Download script
-            </button>
-          </div>
+          <ShareActions
+            stackId={stack.id}
+            stackName={stack.name}
+            script={guide.script}
+            onDownload={downloadScript}
+          />
         </div>
       )}
 
