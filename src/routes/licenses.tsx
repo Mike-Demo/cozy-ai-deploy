@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { affiliationNote, creditGroups } from "@/data/credits";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 const TITLE = "Open source & credits — Agent Deploy";
 const DESCRIPTION =

@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 export const Route = createFileRoute("/faq")({
   staticData: { sitemap: true },
@@ -22,6 +23,22 @@ export const Route = createFileRoute("/faq")({
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/faq" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({
+          name: "FAQ",
+          description:
+            "Answers to common questions about installing Ollama, choosing an operating system, hardware requirements, and using Agent Deploy.",
+          path: "/faq",
+        }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "FAQ", path: "/faq" },
+        ]),
+      ),
+    ],
   }),
   component: FaqPage,
 });

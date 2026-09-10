@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { changelogEntries } from "@/data/changelog";
 import type { ChangeKind } from "@/data/changelog";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 const TITLE = "Changelog — Agent Deploy";
 const DESCRIPTION =

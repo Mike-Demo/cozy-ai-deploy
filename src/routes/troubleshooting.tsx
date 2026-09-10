@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { stacks } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { Troubleshooting } from "@/components/Troubleshooting";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 export const Route = createFileRoute("/troubleshooting")({
   staticData: { sitemap: true },
