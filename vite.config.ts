@@ -24,14 +24,18 @@ export default defineConfig(({ command, mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    optimizeDeps: {
+      exclude: TANSTACK_SSR_DEPS,
+    },
+    ssr: {
+      optimizeDeps: {
+        exclude: TANSTACK_SSR_DEPS,
+      },
+    },
     environments: {
       ssr: {
         optimizeDeps: {
-          exclude: [
-            "@tanstack/start-server-core",
-            "@tanstack/react-start",
-            "@tanstack/react-start-server",
-          ],
+          exclude: TANSTACK_SSR_DEPS,
         },
       },
     },
