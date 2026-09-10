@@ -8,6 +8,13 @@
       "when": 1789048709885,
       "tag": "0000_gist_rate_limits",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1789049125610,
+      "tag": "0001_restrict_consume_rate_limit_execute",
+      "breakpoints": true
     }
   ]
 }
