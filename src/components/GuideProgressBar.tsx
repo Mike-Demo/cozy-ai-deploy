@@ -25,7 +25,7 @@ export function GuideProgressBar({
   return (
     <div
       className={cn(
-        "sticky top-0 z-20 -mx-4 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 print:hidden",
+        "sticky top-16 z-20 -mx-4 border-b border-border bg-surface/95 px-4 py-3 backdrop-blur sm:-mx-6 sm:px-6 print:hidden",
         className,
       )}
     >

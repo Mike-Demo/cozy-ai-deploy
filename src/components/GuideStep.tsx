@@ -27,7 +27,7 @@ export function GuideStep({
     <section
       id={anchorId}
       className={cn(
-        "scroll-mt-24 rounded-xl border bg-surface p-5 transition-colors print-break-inside-avoid",
+        "scroll-mt-40 rounded-xl border bg-surface p-5 transition-colors print-break-inside-avoid",
         done
           ? "border-success/40 bg-success-subtle/20"
           : isCurrent

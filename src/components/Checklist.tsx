@@ -47,7 +47,7 @@ export function Checklist({
             key={check.id}
             id={`check-${check.id}`}
             className={cn(
-              "scroll-mt-24 rounded-xl border bg-surface p-4 transition-colors",
+              "scroll-mt-40 rounded-xl border bg-surface p-4 transition-colors",
               state[check.id] ? "border-success/50 bg-success-subtle/30" : "border-border",
             )}
           >

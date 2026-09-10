@@ -112,7 +112,7 @@ export function GuideWalkthrough({
         </div>
       </section>
 
-      <section id={VERIFY_ANCHOR} className="scroll-mt-24">
+      <section id={VERIFY_ANCHOR} className="scroll-mt-40">
         <h2 className="mb-4 font-heading text-xl font-semibold text-text">
           Verification
         </h2>
