@@ -24,6 +24,17 @@ export default defineConfig(({ command, mode }) => {
         "@": path.resolve(__dirname, "./src"),
       },
     },
+    environments: {
+      ssr: {
+        optimizeDeps: {
+          exclude: [
+            "@tanstack/start-server-core",
+            "@tanstack/react-start",
+            "@tanstack/react-start-server",
+          ],
+        },
+      },
+    },
     plugins: [
       mockupPreviewPlugin(),
       tailwindcss(),
