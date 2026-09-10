@@ -21,6 +21,12 @@ export interface Model {
   minRamGb: number;
   recommendedRamGb: number;
   useCases: string[];
+  /** Organisation that publishes and maintains the model. */
+  maintainer: string;
+  /** Official project or model page. */
+  maintainerUrl?: string;
+  /** One plain-English line on what this model suits best. */
+  bestFor: string;
 }
 
 export interface StackOption {
