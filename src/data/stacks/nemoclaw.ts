@@ -20,7 +20,7 @@ export const nemoClawStack: AgentStack = {
   id: "nemoclaw",
   name: "NVIDIA NemoClaw",
   shortName: "NemoClaw",
-  icon: "🟢",
+  icon: "fa-solid fa-microchip",
   tagline: "NVIDIA's agent stack for GPU-powered inference.",
   description:
     "Deploy NVIDIA NemoClaw on a GPU-equipped VPS to run agent workflows accelerated by NVIDIA inference tools. CPU-only servers will run much more slowly.",

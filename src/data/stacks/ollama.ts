@@ -46,7 +46,7 @@ export const ollamaStack: AgentStack = {
   id: "ollama",
   name: "Ollama only",
   shortName: "Ollama",
-  icon: "🦙",
+  icon: "fa-solid fa-terminal",
   tagline: "Run local models with a simple API on your VPS.",
   description:
     "Install just Ollama and the models you want. Access them over HTTP from your own apps, with no extra dashboard or agent layer.",
