@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getStackById } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
+import { Logo } from "@/components/Logo";
 import { CommandBlock } from "@/components/CommandBlock";
 import { Checklist } from "@/components/Checklist";
 import { Troubleshooting } from "@/components/Troubleshooting";
