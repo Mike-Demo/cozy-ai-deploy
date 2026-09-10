@@ -9,6 +9,12 @@ import tailwindcss from "@tailwindcss/vite";
 import { mockupPreviewPlugin } from "./mockupPreviewPlugin";
 
 
+const TANSTACK_SSR_DEPS = [
+  "@tanstack/start-server-core",
+  "@tanstack/react-start",
+  "@tanstack/react-start-server",
+];
+
 export default defineConfig(({ command, mode }) => {
   // Cloudflare Workers plugin only on build (produces the worker output);
   // the workerd runtime isn't available for the dev server.
@@ -22,6 +28,21 @@ export default defineConfig(({ command, mode }) => {
     resolve: {
       alias: {
         "@": path.resolve(__dirname, "./src"),
+      },
+    },
+    optimizeDeps: {
+      exclude: TANSTACK_SSR_DEPS,
+    },
+    ssr: {
+      optimizeDeps: {
+        exclude: TANSTACK_SSR_DEPS,
+      },
+    },
+    environments: {
+      ssr: {
+        optimizeDeps: {
+          exclude: TANSTACK_SSR_DEPS,
+        },
       },
     },
     plugins: [
