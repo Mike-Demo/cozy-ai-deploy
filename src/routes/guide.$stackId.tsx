@@ -2,10 +2,8 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getStackById } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { Logo } from "@/components/Logo";
-import { CommandBlock } from "@/components/CommandBlock";
-import { Checklist } from "@/components/Checklist";
+import { GuideWalkthrough } from "@/components/GuideWalkthrough";
 import { Troubleshooting } from "@/components/Troubleshooting";
-import { ShareActions } from "@/components/ShareActions";
 import { generateGuide } from "@/lib/generate";
 
 const SITE_URL = "https://local.mikedemo.dev";
