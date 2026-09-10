@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { stacks } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { StackCard } from "@/components/StackCard";
+import { Logo } from "@/components/Logo";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
@@ -22,8 +23,9 @@ function HomePage() {
     <Layout>
       <section className="bg-surface-muted py-16 sm:py-24">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 text-center">
-          <span className="inline-flex items-center gap-2 rounded-full bg-accent-subtle/50 px-3 py-1 text-xs font-semibold text-accent">
-            <i className="fa-solid fa-robot" />
+          <Logo className="mx-auto h-20 w-20 text-text" title="Agent Deploy" />
+          <span className="mt-6 inline-flex items-center gap-2 rounded-full bg-accent-subtle/50 px-3 py-1 text-xs font-semibold text-accent">
+            <i className="fa-solid fa-robot" aria-hidden="true" />
             Self-hosted AI agents
           </span>
           <h1 className="mt-6 font-heading text-4xl sm:text-5xl font-bold text-text tracking-tight">

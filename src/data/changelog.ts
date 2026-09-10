@@ -10,6 +10,16 @@ export interface ChangelogEntry {
 export const changelogEntries: readonly ChangelogEntry[] = [
   {
     date: "2026-09-10",
+    title: "New logo, model maintainers, and consistent icons",
+    kind: "New",
+    notes: [
+      "Agent Deploy now has its own mark: a robot inside a cloud, used in the header, on the home page, and as the browser tab icon.",
+      "Each model now shows who maintains it, a link to the official project page, and a plain-English line on what it is best for.",
+      "The emoji next to each stack have been replaced with matching Font Awesome icons.",
+    ],
+  },
+  {
+    date: "2026-09-10",
     title: "Footer, credits, changelog and security pages",
     kind: "New",
     notes: [

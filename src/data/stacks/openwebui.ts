@@ -10,6 +10,9 @@ const models: Model[] = [
     minRamGb: 8,
     recommendedRamGb: 16,
     useCases: ["Coding assistance", "General chat", "Automation"],
+    maintainer: "Alibaba Cloud (Qwen team)",
+    maintainerUrl: "https://github.com/QwenLM",
+    bestFor: "Coding help and general chat on a mid-sized server.",
   },
   {
     id: "phi4-mini",
@@ -20,6 +23,9 @@ const models: Model[] = [
     minRamGb: 6,
     recommendedRamGb: 12,
     useCases: ["Faster responses", "Lower memory usage"],
+    maintainer: "Microsoft",
+    maintainerUrl: "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+    bestFor: "Fast replies on a small server.",
   },
 ];
 
@@ -27,7 +33,7 @@ export const openWebUIStack: AgentStack = {
   id: "openwebui",
   name: "Open WebUI + Ollama",
   shortName: "Open WebUI",
-  icon: "🌐",
+  icon: "fa-solid fa-window-maximize",
   tagline: "A friendly browser chat interface for your local models.",
   description:
     "Install Ollama plus Open WebUI to chat with your models through a clean web interface running on your own server.",

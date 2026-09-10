@@ -10,6 +10,9 @@ const models: Model[] = [
     minRamGb: 10,
     recommendedRamGb: 16,
     useCases: ["General chat", "Instruction following", "Assistant workflows"],
+    maintainer: "Nous Research (built on Meta's Llama 3.1)",
+    maintainerUrl: "https://nousresearch.com/",
+    bestFor: "A well-rounded assistant that follows instructions closely.",
   },
   {
     id: "hermes-2-pro-7b",
@@ -20,6 +23,9 @@ const models: Model[] = [
     minRamGb: 10,
     recommendedRamGb: 16,
     useCases: ["Tool use", "Reasoning", "Agent workflows"],
+    maintainer: "Nous Research",
+    maintainerUrl: "https://nousresearch.com/",
+    bestFor: "Agent tasks where the model has to call tools reliably.",
   },
 ];
 
@@ -27,7 +33,7 @@ export const hermesStack: AgentStack = {
   id: "hermes",
   name: "Hermes",
   shortName: "Hermes",
-  icon: "🏛️",
+  icon: "fa-solid fa-feather",
   tagline: "Local Hermes assistant models for chat and agent tasks.",
   description:
     "Install Hermes models through Ollama and run them locally on your VPS. Hermes models are known for strong instruction following and tool-use behavior.",

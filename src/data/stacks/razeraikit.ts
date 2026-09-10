@@ -4,7 +4,7 @@ export const razerAIKITStack: AgentStack = {
   id: "razeraikit",
   name: "Razer AIKIT",
   shortName: "Razer AIKIT",
-  icon: "🐍",
+  icon: "fa-solid fa-gamepad",
   tagline: "Razer's toolkit for local inference and device control.",
   description:
     "Install Razer AIKIT on a compatible VPS or edge device to run optimized local inference pipelines and manage connected devices from a single toolkit.",

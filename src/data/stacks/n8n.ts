@@ -4,7 +4,7 @@ export const n8nStack: AgentStack = {
   id: "n8n",
   name: "n8n + Ollama",
   shortName: "n8n",
-  icon: "⚡",
+  icon: "fa-solid fa-diagram-project",
   tagline: "Self-hosted automation workflows that call local AI models.",
   description:
     "Install n8n workflow automation alongside Ollama so your workflows can use local LLMs without sending data to third parties.",

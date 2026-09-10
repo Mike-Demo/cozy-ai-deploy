@@ -10,6 +10,9 @@ const models: Model[] = [
     minRamGb: 8,
     recommendedRamGb: 16,
     useCases: ["Coding assistance", "Technical troubleshooting", "Automation tasks", "General-purpose AI usage"],
+    maintainer: "Alibaba Cloud (Qwen team)",
+    maintainerUrl: "https://github.com/QwenLM",
+    bestFor: "Coding help and technical troubleshooting on a mid-sized server.",
   },
   {
     id: "phi4-mini",
@@ -20,6 +23,9 @@ const models: Model[] = [
     minRamGb: 6,
     recommendedRamGb: 12,
     useCases: ["Smaller VPS plans", "Faster responses", "Logic and reasoning", "Lower memory usage"],
+    maintainer: "Microsoft",
+    maintainerUrl: "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+    bestFor: "Quick answers and step-by-step reasoning on a small server.",
   },
 ];
 
@@ -27,7 +33,7 @@ export const openclawStack: AgentStack = {
   id: "openclaw",
   name: "OpenClaw + Ollama",
   shortName: "OpenClaw",
-  icon: "🦾",
+  icon: "fa-solid fa-robot",
   tagline: "Self-hosted AI agent platform with local models.",
   description:
     "Install OpenClaw and Ollama on your VPS to run Qwen3.5-4B and Phi-4-mini locally. Your AI environment stays online even when your personal computer is off.",

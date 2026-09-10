@@ -10,6 +10,9 @@ const models: Model[] = [
     minRamGb: 8,
     recommendedRamGb: 16,
     useCases: ["Coding assistance", "Technical troubleshooting", "General-purpose AI"],
+    maintainer: "Alibaba Cloud (Qwen team)",
+    maintainerUrl: "https://github.com/QwenLM",
+    bestFor: "Coding help and technical troubleshooting on a mid-sized server.",
   },
   {
     id: "phi4-mini",
@@ -20,6 +23,9 @@ const models: Model[] = [
     minRamGb: 6,
     recommendedRamGb: 12,
     useCases: ["Smaller VPS plans", "Faster responses", "Logic and reasoning"],
+    maintainer: "Microsoft",
+    maintainerUrl: "https://huggingface.co/microsoft/Phi-4-mini-instruct",
+    bestFor: "Quick answers and step-by-step reasoning on a small server.",
   },
   {
     id: "llama3.2-3b",
@@ -30,6 +36,9 @@ const models: Model[] = [
     minRamGb: 6,
     recommendedRamGb: 12,
     useCases: ["Chat", "Lightweight tasks", "Edge deployment"],
+    maintainer: "Meta",
+    maintainerUrl: "https://www.llama.com/",
+    bestFor: "Everyday chat when memory is tight.",
   },
 ];
 
@@ -37,7 +46,7 @@ export const ollamaStack: AgentStack = {
   id: "ollama",
   name: "Ollama only",
   shortName: "Ollama",
-  icon: "🦙",
+  icon: "fa-solid fa-terminal",
   tagline: "Run local models with a simple API on your VPS.",
   description:
     "Install just Ollama and the models you want. Access them over HTTP from your own apps, with no extra dashboard or agent layer.",

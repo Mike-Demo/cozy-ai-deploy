@@ -22,8 +22,10 @@ export function StackCard({ stack, selected, onClick, href }: StackCardProps) {
   const content = (
     <>
       <div className="flex items-start justify-between gap-3">
-        <div className="flex items-center gap-2">
-          <span className="text-2xl">{stack.icon}</span>
+        <div className="flex items-center gap-3">
+          <span className="inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-accent-subtle/50 text-base text-accent">
+            <i className={stack.icon} aria-hidden="true" />
+          </span>
           <h3 className="font-heading text-lg font-semibold text-text">
             {stack.name}
           </h3>
