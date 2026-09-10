@@ -34,5 +34,3 @@ export {
 export type { CdnLoadOptions } from "./cdn";
 export * from "./react";
 export * from "./patterns";
-// Theme editor (tokens, live-override hook, panel). The save server function
-
