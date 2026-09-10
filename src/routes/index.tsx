@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { stacks } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { StackCard } from "@/components/StackCard";
+import { Logo } from "@/components/Logo";
 
 export const Route = createFileRoute("/")({
   component: HomePage,
