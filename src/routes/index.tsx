@@ -15,7 +15,9 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Generate personalized copy-and-paste install guides for self-hosted AI agents." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://local.mikedemo.dev/" },
     ],
+    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/" }],
   }),
 });
 
