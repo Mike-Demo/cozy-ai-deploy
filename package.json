@@ -58,6 +58,7 @@
     "postcss": "^8.5.28",
     "js-yaml": "^4.3.2",
     "browserslist": "^4.28.9",
-    "baseline-browser-mapping": "^2.11.21"
+    "baseline-browser-mapping": "^2.11.21",
+    "esbuild": "^0.25.12"
   }
 }
