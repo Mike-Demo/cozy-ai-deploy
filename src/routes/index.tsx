@@ -3,6 +3,7 @@ import { stacks } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { StackCard } from "@/components/StackCard";
 import { Logo } from "@/components/Logo";
+import { jsonLdScript, webApplicationSchema } from "@/lib/seo/structuredData";
 
 export const Route = createFileRoute("/")({
   staticData: { sitemap: true },
@@ -18,6 +19,7 @@ export const Route = createFileRoute("/")({
       { property: "og:url", content: "https://local.mikedemo.dev/" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/" }],
+    scripts: [jsonLdScript(webApplicationSchema())],
   }),
 });
 

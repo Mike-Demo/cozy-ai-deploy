@@ -56,6 +56,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/favicon.png" },
     ],
+    scripts: [jsonLdScript(websiteSchema()), jsonLdScript(organizationSchema())],
   }),
   shellComponent: RootShell,
   component: RootComponent,
