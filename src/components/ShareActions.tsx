@@ -104,6 +104,13 @@ export function ShareActions({
         </div>
       )}
 
+      {penBlocked && (
+        <p className="rounded-xl border border-warning/30 bg-warning-subtle/30 px-4 py-3 text-sm text-warning">
+          Your browser blocked the new tab for CodePen. Allow pop-ups for this
+          page, or open the app in its own tab, then try again.
+        </p>
+      )}
+
       {gistMutation.isError && (
         <p className="rounded-xl border border-warning/30 bg-warning-subtle/30 px-4 py-3 text-sm text-warning">
           {gistMutation.error instanceof Error
