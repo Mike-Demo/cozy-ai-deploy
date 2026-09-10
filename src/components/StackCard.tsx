@@ -11,12 +11,13 @@ interface StackCardProps {
 
 export function StackCard({ stack, selected, onClick, href }: StackCardProps) {
   const className = cn(
-    "w-full text-left rounded-2xl border-2 bg-surface p-5 transition-all duration-200",
+    "flex flex-col w-full text-left rounded-2xl border-2 bg-surface p-5 transition-all duration-200",
     "hover:shadow-md hover:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg",
     selected
       ? "border-accent shadow-md ring-1 ring-accent"
       : "border-border",
   );
+
 
   const content = (
     <>
