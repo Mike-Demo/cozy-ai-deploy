@@ -61,7 +61,7 @@ export function CopyLinkButton({ label = "Copy link", className }: CopyLinkButto
       type="button"
       onClick={handleClick}
       className={cn(
-        "inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-4 py-2.5 text-sm font-medium text-text transition-colors hover:bg-surface-muted",
+        "inline-flex items-center gap-2 rounded-xl border border-border bg-surface px-5 py-2.5 text-sm font-medium text-text transition-colors hover:bg-surface-muted",
         className,
       )}
     >
