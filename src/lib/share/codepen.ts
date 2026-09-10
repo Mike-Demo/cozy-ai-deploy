@@ -1,9 +1,12 @@
-/** Opens CodePen with the given script prefilled, using CodePen's prefill form POST. */
+/**
+ * Opens CodePen with the given script prefilled, using CodePen's prefill form POST.
+ * Returns false when the browser blocked the new tab (common inside preview iframes).
+ */
 export function openInCodePen(options: {
   title: string;
   description: string;
   script: string;
-}): void {
+}): boolean {
   const escaped = options.script
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -16,11 +19,14 @@ export function openInCodePen(options: {
     editors: "1000",
   };
 
+  const target = `codepen_${Date.now()}`;
+  const opened = window.open("", target);
+  if (!opened) return false;
+
   const form = document.createElement("form");
   form.method = "POST";
   form.action = "https://codepen.io/pen/define";
-  form.target = "_blank";
-  form.rel = "noopener";
+  form.target = target;
 
   const input = document.createElement("input");
   input.type = "hidden";
@@ -31,4 +37,5 @@ export function openInCodePen(options: {
   document.body.appendChild(form);
   form.submit();
   document.body.removeChild(form);
+  return true;
 }
