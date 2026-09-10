@@ -23,6 +23,9 @@ export function Layout({ children, hideFooter }: LayoutProps) {
             <Link to="/setup" className="hover:text-accent transition-colors">
               Setup
             </Link>
+            <Link to="/faq" className="hover:text-accent transition-colors">
+              FAQ
+            </Link>
             <Link to="/troubleshooting" className="hover:text-accent transition-colors">
               Troubleshooting
             </Link>
