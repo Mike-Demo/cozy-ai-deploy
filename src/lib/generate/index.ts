@@ -1,0 +1,171 @@
+import type {
+  AgentStack,
+  GeneratedGuide,
+  InstallStep,
+  Model,
+  ServerDetails,
+  StackOption,
+  TroubleshootingItem,
+  VerificationCheck,
+} from "@/lib/types";
+import { computeFitCheck } from "./fit";
+import { renderArray, renderTemplate, type TemplateContext } from "./template";
+
+export interface GenerateGuideInput {
+  stack: AgentStack;
+  selectedModels: Model[];
+  selectedOptions: StackOption[];
+  server: ServerDetails;
+}
+
+function buildContext(
+  stack: AgentStack,
+  selectedModels: Model[],
+  selectedOptions: StackOption[],
+  server: ServerDetails,
+): TemplateContext {
+  return {
+    server,
+    models: selectedModels,
+  };
+}
+
+function expandModelCommands(
+  commands: string[],
+  context: TemplateContext,
+): string[] {
+  const expanded: string[] = [];
+  for (const command of commands) {
+    if (command.includes("{{model_ollama_name}}")) {
+      for (const model of context.models) {
+        expanded.push(
+          command.replace(/\{\{model_ollama_name\}\}/g, model.ollamaName),
+        );
+      }
+    } else {
+      expanded.push(command);
+    }
+  }
+  return expanded;
+}
+
+function renderStep(step: InstallStep, context: TemplateContext): InstallStep {
+  return {
+    title: renderTemplate(step.title, context),
+    description: renderTemplate(step.description, context),
+    commands: expandModelCommands(
+      renderArray(step.commands, context),
+      context,
+    ),
+    note: step.note ? renderTemplate(step.note, context) : undefined,
+  };
+}
+
+function renderVerificationCheck(
+  check: VerificationCheck,
+  context: TemplateContext,
+): VerificationCheck {
+  return {
+    id: check.id,
+    label: renderTemplate(check.label, context),
+    command: renderTemplate(check.command, context),
+    expectedOutput: check.expectedOutput
+      ? renderTemplate(check.expectedOutput, context)
+      : undefined,
+  };
+}
+
+function renderTroubleshootingItem(
+  item: TroubleshootingItem,
+  context: TemplateContext,
+): TroubleshootingItem {
+  return {
+    id: item.id,
+    problem: renderTemplate(item.problem, context),
+    solution: renderTemplate(item.solution, context),
+    commands: item.commands
+      ? expandModelCommands(renderArray(item.commands, context), context)
+      : undefined,
+  };
+}
+
+function generateScript(
+  stack: AgentStack,
+  steps: InstallStep[],
+  context: TemplateContext,
+): string {
+  const lines: string[] = [
+    "#!/usr/bin/env bash",
+    "set -euo pipefail",
+    "",
+    `# ${stack.name} installer`,
+    `# Generated for ${context.server.ip || "YOUR_SERVER_IP"}`,
+    "",
+    `echo "Starting installation of ${stack.name}..."`,
+    "",
+  ];
+
+  for (const step of steps) {
+    lines.push(`# ${step.title}`);
+    lines.push(`# ${step.description}`);
+    if (step.note) {
+      lines.push(`# Note: ${step.note}`);
+    }
+    for (const command of step.commands) {
+      lines.push(command);
+    }
+    lines.push("");
+  }
+
+  lines.push("echo \"Installation complete. Run verification checks from the guide.\"");
+
+  return lines.join("\n");
+}
+
+function generateOneLineCommand(script: string): string {
+  const marker = "AGENT_DEPLOY_INSTALL";
+  const escapedScript = script.replace(/\\/g, "\\\\").replace(/'/g, "'\\''");
+  return [
+    `cat <<'${marker}' > /tmp/agent-deploy-install.sh`,
+    escapedScript,
+    marker,
+    "bash /tmp/agent-deploy-install.sh",
+  ].join("\n");
+}
+
+export function generateGuide(input: GenerateGuideInput): GeneratedGuide {
+  const context = buildContext(
+    input.stack,
+    input.selectedModels,
+    input.selectedOptions,
+    input.server,
+  );
+
+  const steps = input.stack.installSteps.map((step) => renderStep(step, context));
+  const verificationChecks = input.stack.verificationChecks.map((check) =>
+    renderVerificationCheck(check, context),
+  );
+  const troubleshooting = input.stack.troubleshooting.map((item) =>
+    renderTroubleshootingItem(item, context),
+  );
+
+  const script = generateScript(input.stack, steps, context);
+  const oneLineCommand = generateOneLineCommand(script);
+  const fitCheck = computeFitCheck(
+    input.stack,
+    input.selectedModels,
+    input.selectedOptions,
+    input.server,
+  );
+
+  return {
+    script,
+    oneLineCommand,
+    steps,
+    verificationChecks,
+    troubleshooting,
+    recoveryCommands: input.stack.recoveryCommands ?? [],
+    supportInfoCommands: input.stack.supportInfoCommands ?? [],
+    fitCheck,
+  };
+}

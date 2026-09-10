@@ -1,0 +1,190 @@
+import type { AgentStack, Model } from "@/lib/types";
+
+const models: Model[] = [
+  {
+    id: "qwen3.5-4b",
+    name: "Qwen3.5-4B",
+    ollamaName: "qwen3.5:4b",
+    description: "A capable 4B-parameter model good for coding, troubleshooting, and general tasks.",
+    sizeGb: 2.5,
+    minRamGb: 8,
+    recommendedRamGb: 16,
+    useCases: ["Coding assistance", "Technical troubleshooting", "Automation tasks", "General-purpose AI usage"],
+  },
+  {
+    id: "phi4-mini",
+    name: "Phi-4-mini",
+    ollamaName: "phi4-mini",
+    description: "A smaller, faster model that uses less memory while still handling logic and reasoning well.",
+    sizeGb: 2.0,
+    minRamGb: 6,
+    recommendedRamGb: 12,
+    useCases: ["Smaller VPS plans", "Faster responses", "Logic and reasoning", "Lower memory usage"],
+  },
+];
+
+export const openclawStack: AgentStack = {
+  id: "openclaw",
+  name: "OpenClaw + Ollama",
+  shortName: "OpenClaw",
+  icon: "🦾",
+  tagline: "Self-hosted AI agent platform with local models.",
+  description:
+    "Install OpenClaw and Ollama on your VPS to run Qwen3.5-4B and Phi-4-mini locally. Your AI environment stays online even when your personal computer is off.",
+  audience: "New and existing VPS customers",
+  estimatedSetupTime: "20–30 minutes",
+  version: "1.0",
+  requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
+    minRamGb: 8,
+    recommendedRamGb: 16,
+    minDiskGb: 40,
+    recommendedDiskGb: 60,
+    minCpu: 4,
+    recommendedCpu: 8,
+  },
+
+  models,
+  options: [
+    {
+      id: "monitoring",
+      label: "Install monitoring tools",
+      description: "Adds htop so you can watch CPU and memory usage during operation.",
+      default: false,
+      extraDiskGb: 0,
+    },
+    {
+      id: "dashboard-port",
+      label: "Open dashboard port",
+      description: "Notes the OpenClaw dashboard port in the guide (you still configure the firewall yourself).",
+      default: false,
+    },
+  ],
+  installSteps: [
+    {
+      title: "Connect to your VPS",
+      description: "Log in to your server as root or a user with sudo privileges.",
+      commands: ["ssh root@{{server_ip}}"],
+    },
+    {
+      title: "Update your server",
+      description: "Install the latest security and package updates.",
+      commands: ["sudo apt update", "sudo apt upgrade -y"],
+    },
+    {
+      title: "Install Ollama",
+      description: "Ollama manages and runs AI models locally on your VPS.",
+      commands: ["curl -fsSL https://ollama.com/install.sh | sh"],
+    },
+    {
+      title: "Start and enable Ollama",
+      description: "Make sure Ollama starts automatically and is running now.",
+      commands: [
+        "sudo systemctl enable ollama",
+        "sudo systemctl start ollama",
+        "sudo systemctl status ollama",
+      ],
+      note: "Look for active (running) in the status output.",
+    },
+    {
+      title: "Pull the models",
+      description: "Download the AI models you selected.",
+      commands: ["ollama pull {{model_ollama_name}}"],
+      note: "This command is repeated for each selected model.",
+    },
+    {
+      title: "Install OpenClaw",
+      description: "The official installer handles Node.js, OpenClaw, and onboarding.",
+      commands: ["curl -fsSL https://openclaw.ai/install.sh | bash"],
+    },
+    {
+      title: "Complete OpenClaw onboarding",
+      description: "Configure OpenClaw to use the local Ollama endpoint.",
+      commands: ["openclaw onboard --install-daemon"],
+      note: "When prompted, choose Ollama and enter http://127.0.0.1:11434 (not /v1).",
+    },
+    {
+      title: "Launch OpenClaw",
+      description: "Start OpenClaw through Ollama.",
+      commands: ["ollama launch openclaw"],
+    },
+  ],
+  verificationChecks: [
+    { id: "ssh", label: "SSH login successful", command: "ssh {{server_username}}@{{server_ip}}" },
+    { id: "os", label: "Operating system is Ubuntu 22.04+", command: "lsb_release -a", expectedOutput: "Ubuntu 22.04 or newer" },
+    { id: "ollama-version", label: "Ollama installed", command: "ollama --version" },
+    { id: "ollama-running", label: "Ollama service is running", command: "sudo systemctl status ollama", expectedOutput: "active (running)" },
+    { id: "ollama-api", label: "Ollama API is responding", command: "curl http://127.0.0.1:11434/api/tags" },
+    { id: "models", label: "Selected models are installed", command: "ollama list", expectedOutput: "{{model_ollama_names}}" },
+    { id: "openclaw-version", label: "OpenClaw installed", command: "openclaw --version" },
+    { id: "openclaw-doctor", label: "OpenClaw diagnostics pass", command: "openclaw doctor" },
+    { id: "openclaw-status", label: "OpenClaw gateway is running", command: "openclaw status" },
+  ],
+  troubleshooting: [
+    {
+      id: "command-not-found",
+      problem: 'Command not found: "openclaw" or "ollama"',
+      solution: "Verify the binary is on PATH. If nothing is returned, reinstall the missing application.",
+      commands: ["which openclaw", "which ollama"],
+    },
+    {
+      id: "ollama-wont-start",
+      problem: "Ollama won't start",
+      solution: "Check the service status and restart Ollama.",
+      commands: ["sudo systemctl status ollama", "sudo systemctl restart ollama"],
+    },
+    {
+      id: "model-download-fails",
+      problem: "Model download fails",
+      solution: "Ensure at least 10 GB of free space is available, then retry the pull.",
+      commands: ["df -h", "ollama pull {{model_ollama_name}}"],
+    },
+    {
+      id: "out-of-memory",
+      problem: "Out of memory errors",
+      solution: "Stop other applications, restart the VPS, run one model at a time, or upgrade to a larger plan.",
+      commands: ["free -h"],
+    },
+    {
+      id: "slow-responses",
+      problem: "Responses are slow",
+      solution: "CPU-only servers are slower than GPU systems. Use Phi-4-mini, reduce server workload, or upgrade CPU resources.",
+    },
+    {
+      id: "openclaw-cannot-connect",
+      problem: "OpenClaw cannot connect to Ollama",
+      solution: "Restart Ollama and confirm the endpoint is http://127.0.0.1:11434, not /v1.",
+      commands: ["curl http://127.0.0.1:11434/api/tags", "sudo systemctl restart ollama"],
+    },
+    {
+      id: "openclaw-closes",
+      problem: "OpenClaw closes immediately",
+      solution: "Run the diagnostic command and review any warnings.",
+      commands: ["openclaw doctor"],
+    },
+    {
+      id: "server-unresponsive",
+      problem: "Server becomes unresponsive",
+      solution: "Install htop to check whether CPU or memory is near 100%.",
+      commands: ["sudo apt install htop -y", "htop"],
+    },
+  ],
+  recoveryCommands: [
+    "sudo systemctl restart ollama",
+    "ollama list",
+    "openclaw doctor",
+    "free -h",
+    "df -h",
+    "ollama launch openclaw",
+  ],
+  supportInfoCommands: [
+    "ollama --version",
+    "openclaw --version",
+    "openclaw doctor",
+    "ollama list",
+    "free -h",
+    "df -h",
+  ],
+  launchCommand: "ollama launch openclaw",
+  dashboardCommand: "openclaw dashboard",
+};
