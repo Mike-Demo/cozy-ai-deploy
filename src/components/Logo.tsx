@@ -38,9 +38,9 @@ export function Logo({ className, accentClassName = "text-accent", title }: Logo
       <circle cx="57" cy="70" r="4.5" className={accentClassName} fill="currentColor" />
       <circle cx="71" cy="70" r="4.5" className={accentClassName} fill="currentColor" />
       {/* Mouth bars */}
-      <rect x="53" y="80" width="7" height="5" rx="2.5" fill="var(--color-surface, #fff)" />
-      <rect x="61" y="80" width="6" height="5" rx="2.5" fill="var(--color-surface, #fff)" />
-      <rect x="68" y="80" width="7" height="5" rx="2.5" fill="var(--color-surface, #fff)" />
+      <rect x="53" y="80" width="7" height="5" rx="2.5" fill="var(--color-surface)" />
+      <rect x="61" y="80" width="6" height="5" rx="2.5" fill="var(--color-surface)" />
+      <rect x="68" y="80" width="7" height="5" rx="2.5" fill="var(--color-surface)" />
     </svg>
   );
 }
