@@ -60,7 +60,7 @@ function TroubleshootingPage() {
             stack.troubleshooting.length > 0 ? (
               <section key={stack.id}>
                 <div className="mb-4 flex items-center gap-3">
-                  <span className="text-2xl">{stack.icon}</span>
+                  <i className={`${stack.icon} text-2xl text-accent`} aria-hidden="true" />
                   <h2 className="font-heading text-xl font-semibold text-text">
                     {stack.name}
                   </h2>
