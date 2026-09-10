@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
+import { SiteFooter } from "./SiteFooter";
 
 interface LayoutProps {
   children: ReactNode;
@@ -27,16 +28,7 @@ export function Layout({ children, hideFooter }: LayoutProps) {
 
       <main className="flex-1">{children}</main>
 
-      {!hideFooter && (
-        <footer className="border-t border-border bg-surface py-8">
-          <div className="max-w-5xl mx-auto px-4 sm:px-6 text-sm text-text-muted">
-            <p>
-              Agent Deploy generates guides locally in your browser. No server
-              connection is made and no credentials are stored.
-            </p>
-          </div>
-        </footer>
-      )}
+      {!hideFooter && <SiteFooter />}
     </div>
   );
 }
