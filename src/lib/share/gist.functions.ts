@@ -80,7 +80,7 @@ export const createGist = createServerFn({ method: "POST" })
     if (!takeToken("global", MAX_GLOBAL_PER_WINDOW, now)) {
       throw new Error("Saving to Gist is busy right now. Please try again later.");
     }
-    if (!takeToken(clientKey(), MAX_PER_WINDOW, now)) {
+    if (!takeToken(await clientKey(), MAX_PER_WINDOW, now)) {
       throw new Error(
         "You've saved several scripts recently. Please wait a while before saving another.",
       );
