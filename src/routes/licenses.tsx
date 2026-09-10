@@ -21,6 +21,21 @@ export const Route = createFileRoute("/licenses")({
       { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/licenses" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({
+          name: "Open source & credits",
+          description: DESCRIPTION,
+          path: "/licenses",
+        }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Open source & credits", path: "/licenses" },
+        ]),
+      ),
+    ],
   }),
 });
 

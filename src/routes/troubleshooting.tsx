@@ -18,6 +18,21 @@ export const Route = createFileRoute("/troubleshooting")({
       { property: "og:url", content: "https://local.mikedemo.dev/troubleshooting" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/troubleshooting" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({
+          name: "Troubleshooting",
+          description: "Common problems and fixes for self-hosted AI agent stacks.",
+          path: "/troubleshooting",
+        }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Troubleshooting", path: "/troubleshooting" },
+        ]),
+      ),
+    ],
   }),
 });
 
