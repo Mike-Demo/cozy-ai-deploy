@@ -1,0 +1,149 @@
+import type { AgentStack, Model } from "@/lib/types";
+
+const models: Model[] = [
+  {
+    id: "qwen3.5-4b",
+    name: "Qwen3.5-4B",
+    ollamaName: "qwen3.5:4b",
+    description: "A capable 4B-parameter model good for coding and general tasks.",
+    sizeGb: 2.5,
+    minRamGb: 8,
+    recommendedRamGb: 16,
+    useCases: ["Coding assistance", "Technical troubleshooting", "General-purpose AI"],
+  },
+  {
+    id: "phi4-mini",
+    name: "Phi-4-mini",
+    ollamaName: "phi4-mini",
+    description: "A smaller, faster model that uses less memory.",
+    sizeGb: 2.0,
+    minRamGb: 6,
+    recommendedRamGb: 12,
+    useCases: ["Smaller VPS plans", "Faster responses", "Logic and reasoning"],
+  },
+  {
+    id: "llama3.2-3b",
+    name: "Llama 3.2 3B",
+    ollamaName: "llama3.2:3b",
+    description: "Meta's lightweight instruction-tuned model.",
+    sizeGb: 2.0,
+    minRamGb: 6,
+    recommendedRamGb: 12,
+    useCases: ["Chat", "Lightweight tasks", "Edge deployment"],
+  },
+];
+
+export const ollamaStack: AgentStack = {
+  id: "ollama",
+  name: "Ollama only",
+  shortName: "Ollama",
+  tagline: "Run local models with a simple API on your VPS.",
+  description:
+    "Install just Ollama and the models you want. Access them over HTTP from your own apps, with no extra dashboard or agent layer.",
+  audience: "Developers who want a local model API",
+  estimatedSetupTime: "10–15 minutes",
+  version: "1.0",
+  requirements: {
+    minRamGb: 6,
+    recommendedRamGb: 12,
+    minDiskGb: 20,
+    recommendedDiskGb: 40,
+    minCpu: 2,
+    recommendedCpu: 4,
+  },
+  models,
+  options: [
+    {
+      id: "monitoring",
+      label: "Install monitoring tools",
+      description: "Adds htop for watching resource usage.",
+      default: false,
+    },
+    {
+      id: "expose-api",
+      label: "Note API exposure steps",
+      description: "Includes guidance on binding Ollama to a network interface safely.",
+      default: false,
+    },
+  ],
+  installSteps: [
+    {
+      title: "Connect to your VPS",
+      description: "Log in to your server as root or a user with sudo privileges.",
+      commands: ["ssh root@{{server_ip}}"],
+    },
+    {
+      title: "Update your server",
+      description: "Install the latest security and package updates.",
+      commands: ["sudo apt update", "sudo apt upgrade -y"],
+    },
+    {
+      title: "Install Ollama",
+      description: "Download and install Ollama.",
+      commands: ["curl -fsSL https://ollama.com/install.sh | sh"],
+    },
+    {
+      title: "Start and enable Ollama",
+      description: "Make sure Ollama starts automatically.",
+      commands: ["sudo systemctl enable ollama", "sudo systemctl start ollama"],
+    },
+    {
+      title: "Pull the models",
+      description: "Download the AI models you selected.",
+      commands: ["ollama pull {{model_ollama_name}}"],
+      note: "This command is repeated for each selected model.",
+    },
+    {
+      title: "Test the API",
+      description: "Confirm Ollama is responding locally.",
+      commands: ["curl http://127.0.0.1:11434/api/tags"],
+    },
+  ],
+  verificationChecks: [
+    { id: "ssh", label: "SSH login successful", command: "ssh {{server_username}}@{{server_ip}}" },
+    { id: "ollama-version", label: "Ollama installed", command: "ollama --version" },
+    { id: "ollama-running", label: "Ollama service is running", command: "sudo systemctl status ollama", expectedOutput: "active (running)" },
+    { id: "ollama-api", label: "Ollama API is responding", command: "curl http://127.0.0.1:11434/api/tags" },
+    { id: "models", label: "Selected models are installed", command: "ollama list", expectedOutput: "{{model_ollama_names}}" },
+  ],
+  troubleshooting: [
+    {
+      id: "command-not-found",
+      problem: "Command not found: ollama",
+      solution: "Verify the binary is on PATH, or reinstall.",
+      commands: ["which ollama"],
+    },
+    {
+      id: "ollama-wont-start",
+      problem: "Ollama won't start",
+      solution: "Check status and restart the service.",
+      commands: ["sudo systemctl status ollama", "sudo systemctl restart ollama"],
+    },
+    {
+      id: "model-download-fails",
+      problem: "Model download fails",
+      solution: "Check free disk space and retry.",
+      commands: ["df -h", "ollama pull {{model_ollama_name}}"],
+    },
+    {
+      id: "out-of-memory",
+      problem: "Out of memory errors",
+      solution: "Use a smaller model, stop other apps, or upgrade RAM.",
+      commands: ["free -h"],
+    },
+    {
+      id: "slow-responses",
+      problem: "Responses are slow",
+      solution: "CPU-only servers are slower. Use Phi-4-mini or upgrade CPU.",
+    },
+  ],
+  recoveryCommands: [
+    "sudo systemctl restart ollama",
+    "ollama list",
+    "curl http://127.0.0.1:11434/api/tags",
+    "free -h",
+    "df -h",
+  ],
+  supportInfoCommands: ["ollama --version", "ollama list", "free -h", "df -h"],
+  launchCommand: "ollama serve",
+};
