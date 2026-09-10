@@ -27,6 +27,7 @@ export const openclawStack: AgentStack = {
   id: "openclaw",
   name: "OpenClaw + Ollama",
   shortName: "OpenClaw",
+  icon: "🦾",
   tagline: "Self-hosted AI agent platform with local models.",
   description:
     "Install OpenClaw and Ollama on your VPS to run Qwen3.5-4B and Phi-4-mini locally. Your AI environment stays online even when your personal computer is off.",
@@ -34,6 +35,7 @@ export const openclawStack: AgentStack = {
   estimatedSetupTime: "20–30 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,
@@ -41,6 +43,7 @@ export const openclawStack: AgentStack = {
     minCpu: 4,
     recommendedCpu: 8,
   },
+
   models,
   options: [
     {

@@ -37,6 +37,7 @@ export const ollamaStack: AgentStack = {
   id: "ollama",
   name: "Ollama only",
   shortName: "Ollama",
+  icon: "🦙",
   tagline: "Run local models with a simple API on your VPS.",
   description:
     "Install just Ollama and the models you want. Access them over HTTP from your own apps, with no extra dashboard or agent layer.",
@@ -44,6 +45,7 @@ export const ollamaStack: AgentStack = {
   estimatedSetupTime: "10–15 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
     minRamGb: 6,
     recommendedRamGb: 12,
     minDiskGb: 20,
@@ -51,6 +53,7 @@ export const ollamaStack: AgentStack = {
     minCpu: 2,
     recommendedCpu: 4,
   },
+
   models,
   options: [
     {

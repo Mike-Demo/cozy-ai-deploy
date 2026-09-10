@@ -4,6 +4,7 @@ export const n8nStack: AgentStack = {
   id: "n8n",
   name: "n8n + Ollama",
   shortName: "n8n",
+  icon: "⚡",
   tagline: "Self-hosted automation workflows that call local AI models.",
   description:
     "Install n8n workflow automation alongside Ollama so your workflows can use local LLMs without sending data to third parties.",
@@ -11,6 +12,7 @@ export const n8nStack: AgentStack = {
   estimatedSetupTime: "20–25 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,
@@ -18,6 +20,7 @@ export const n8nStack: AgentStack = {
     minCpu: 4,
     recommendedCpu: 8,
   },
+
   options: [
     {
       id: "persistent-data",

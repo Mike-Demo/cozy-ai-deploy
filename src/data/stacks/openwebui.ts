@@ -27,6 +27,7 @@ export const openWebUIStack: AgentStack = {
   id: "openwebui",
   name: "Open WebUI + Ollama",
   shortName: "Open WebUI",
+  icon: "🌐",
   tagline: "A friendly browser chat interface for your local models.",
   description:
     "Install Ollama plus Open WebUI to chat with your models through a clean web interface running on your own server.",
@@ -34,6 +35,7 @@ export const openWebUIStack: AgentStack = {
   estimatedSetupTime: "20–25 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,
@@ -41,6 +43,7 @@ export const openWebUIStack: AgentStack = {
     minCpu: 4,
     recommendedCpu: 8,
   },
+
   models,
   options: [
     {

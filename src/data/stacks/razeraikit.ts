@@ -4,6 +4,7 @@ export const razerAIKITStack: AgentStack = {
   id: "razeraikit",
   name: "Razer AIKIT",
   shortName: "Razer AIKIT",
+  icon: "🐍",
   tagline: "Razer's toolkit for local inference and device control.",
   description:
     "Install Razer AIKIT on a compatible VPS or edge device to run optimized local inference pipelines and manage connected devices from a single toolkit.",
@@ -11,6 +12,7 @@ export const razerAIKITStack: AgentStack = {
   estimatedSetupTime: "20–30 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,
@@ -18,6 +20,7 @@ export const razerAIKITStack: AgentStack = {
     minCpu: 4,
     recommendedCpu: 8,
   },
+
   options: [
     {
       id: "device-bridge",

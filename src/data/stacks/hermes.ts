@@ -27,6 +27,7 @@ export const hermesStack: AgentStack = {
   id: "hermes",
   name: "Hermes",
   shortName: "Hermes",
+  icon: "🏛️",
   tagline: "Local Hermes assistant models for chat and agent tasks.",
   description:
     "Install Hermes models through Ollama and run them locally on your VPS. Hermes models are known for strong instruction following and tool-use behavior.",
@@ -34,6 +35,7 @@ export const hermesStack: AgentStack = {
   estimatedSetupTime: "15–25 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
     minRamGb: 10,
     recommendedRamGb: 16,
     minDiskGb: 30,
@@ -41,6 +43,7 @@ export const hermesStack: AgentStack = {
     minCpu: 4,
     recommendedCpu: 8,
   },
+
   models,
   options: [
     {

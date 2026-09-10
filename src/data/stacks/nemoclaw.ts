@@ -17,6 +17,7 @@ export const nemoClawStack: AgentStack = {
   id: "nemoclaw",
   name: "NVIDIA NemoClaw",
   shortName: "NemoClaw",
+  icon: "🟢",
   tagline: "NVIDIA's agent stack for GPU-powered inference.",
   description:
     "Deploy NVIDIA NemoClaw on a GPU-equipped VPS to run agent workflows accelerated by NVIDIA inference tools. CPU-only servers will run much more slowly.",
@@ -24,13 +25,16 @@ export const nemoClawStack: AgentStack = {
   estimatedSetupTime: "25–35 minutes",
   version: "1.0",
   requirements: {
+    os: ["ubuntu-22.04", "ubuntu-24.04"],
     minRamGb: 16,
     recommendedRamGb: 32,
     minDiskGb: 60,
     recommendedDiskGb: 100,
     minCpu: 4,
     recommendedCpu: 8,
+    gpuRecommended: true,
   },
+
   models,
   options: [
     {
