@@ -1,6 +1,7 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { getStackById } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
+import { Logo } from "@/components/Logo";
 import { CommandBlock } from "@/components/CommandBlock";
 import { Checklist } from "@/components/Checklist";
 import { Troubleshooting } from "@/components/Troubleshooting";
@@ -52,8 +53,9 @@ function GuidePage() {
           >
             <i className="fa-solid fa-arrow-left" /> Back home
           </Link>
-          <div className="mt-4 flex items-center gap-3">
-            <span className="text-3xl">{stack.icon}</span>
+          <div className="mt-4 flex items-center gap-3 text-text">
+            <Logo className="h-9 w-9 shrink-0" />
+            <i className={`${stack.icon} text-2xl text-accent`} aria-hidden="true" />
             <h1 className="font-heading text-3xl font-semibold text-text">
               {stack.name} install guide
             </h1>
