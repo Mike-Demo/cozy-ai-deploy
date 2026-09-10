@@ -7,6 +7,7 @@ import { Troubleshooting } from "@/components/Troubleshooting";
 import { generateGuide } from "@/lib/generate";
 import { CopyLinkButton } from "@/components/CopyLinkButton";
 import { parsePermalinkSearch, resolveSelection } from "@/lib/permalink";
+import { breadcrumbSchema, jsonLdScript } from "@/lib/seo/structuredData";
 
 const SITE_URL = "https://local.mikedemo.dev";
 
@@ -66,6 +67,13 @@ export const Route = createFileRoute("/guide/$stackId")({
             })),
           }),
         },
+        jsonLdScript(
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Build your install guide", path: "/setup" },
+            { name: `${stack.name} install guide`, path: `/guide/${params.stackId}` },
+          ]),
+        ),
       ],
     };
   },
