@@ -45,11 +45,12 @@ export function StepOptions({
                   type="button"
                   onClick={() => onToggleModel(model.id)}
                   className={cn(
-                    "text-left rounded-xl border-2 p-4 transition-all",
+                    "flex flex-col text-left rounded-xl border-2 p-4 transition-all",
                     selected
                       ? "border-accent bg-accent-subtle/30"
                       : "border-border bg-surface hover:border-accent/50",
                   )}
+
                 >
                   <div className="flex items-start justify-between gap-3">
                     <span className="font-medium text-text">{model.name}</span>
