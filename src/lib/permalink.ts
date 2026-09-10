@@ -28,17 +28,24 @@ export const permalinkSearchSchema = z.object({
 export interface PermalinkSearch {
   step?: number;
   stack?: string;
-  models: string[];
-  options: string[];
+  models?: string[];
+  options?: string[];
   os?: string;
 }
 
 export function parsePermalinkSearch(input: Record<string, unknown>): PermalinkSearch {
   const result = permalinkSearchSchema.safeParse(input);
   if (!result.success) {
-    return { models: [], options: [] };
+    return {};
   }
-  return result.data;
+  const { step, stack, models, options, os } = result.data;
+  const search: PermalinkSearch = {};
+  if (stack) search.stack = stack;
+  if (step !== undefined) search.step = step;
+  if (models.length > 0) search.models = models;
+  if (options.length > 0) search.options = options;
+  if (os) search.os = os;
+  return search;
 }
 
 const OPERATING_SYSTEMS: OperatingSystem[] = [
@@ -66,10 +73,10 @@ export function resolveSelection(search: PermalinkSearch): ResolvedSelection {
     return { stackId: null, modelIds: [], optionIds: [], step: 0 };
   }
 
-  const modelIds = search.models.filter((id) =>
+  const modelIds = (search.models ?? []).filter((id) =>
     (stack.models ?? []).some((model) => model.id === id),
   );
-  const optionIds = search.options.filter((id) =>
+  const optionIds = (search.options ?? []).filter((id) =>
     (stack.options ?? []).some((option) => option.id === id),
   );
   const operatingSystem = OPERATING_SYSTEMS.find((os) => os === search.os);
@@ -88,7 +95,7 @@ export function buildPermalinkSearch(input: {
   optionIds: string[];
   operatingSystem?: OperatingSystem;
 }): PermalinkSearch {
-  const search: PermalinkSearch = { models: [], options: [] };
+  const search: PermalinkSearch = {};
 
   if (!input.stackId) return search;
 
@@ -106,8 +113,8 @@ export function stringifyPermalinkSearch(search: PermalinkSearch): Record<string
   const out: Record<string, string> = {};
   if (search.stack) out.stack = search.stack;
   if (search.step !== undefined && search.step > 0) out.step = String(search.step);
-  if (search.models.length > 0) out.models = search.models.join(",");
-  if (search.options.length > 0) out.options = search.options.join(",");
+  if (search.models && search.models.length > 0) out.models = search.models.join(",");
+  if (search.options && search.options.length > 0) out.options = search.options.join(",");
   if (search.os) out.os = search.os;
   return out;
 }
