@@ -1,3 +1,4 @@
+import { Link } from "@tanstack/react-router";
 import type { AgentStack } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
@@ -5,25 +6,27 @@ interface StackCardProps {
   stack: AgentStack;
   selected?: boolean;
   onClick?: () => void;
+  href?: string;
 }
 
-export function StackCard({ stack, selected, onClick }: StackCardProps) {
-  return (
-    <button
-      type="button"
-      onClick={onClick}
-      className={cn(
-        "w-full text-left rounded-2xl border-2 bg-surface p-5 transition-all duration-200",
-        "hover:shadow-md hover:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg",
-        selected
-          ? "border-accent shadow-md ring-1 ring-accent"
-          : "border-border",
-      )}
-    >
+export function StackCard({ stack, selected, onClick, href }: StackCardProps) {
+  const className = cn(
+    "w-full text-left rounded-2xl border-2 bg-surface p-5 transition-all duration-200",
+    "hover:shadow-md hover:border-accent/50 focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2 focus:ring-offset-bg",
+    selected
+      ? "border-accent shadow-md ring-1 ring-accent"
+      : "border-border",
+  );
+
+  const content = (
+    <>
       <div className="flex items-start justify-between gap-3">
-        <h3 className="font-heading text-lg font-semibold text-text">
-          {stack.name}
-        </h3>
+        <div className="flex items-center gap-2">
+          <span className="text-2xl">{stack.icon}</span>
+          <h3 className="font-heading text-lg font-semibold text-text">
+            {stack.name}
+          </h3>
+        </div>
         {selected && (
           <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-accent text-text-inverse text-xs">
             <i className="fa-solid fa-check" />
@@ -47,6 +50,21 @@ export function StackCard({ stack, selected, onClick }: StackCardProps) {
           {stack.estimatedSetupTime}
         </span>
       </div>
+    </>
+  );
+
+  if (href) {
+    return (
+      <Link to={href} className={className}>
+        {content}
+      </Link>
+    );
+  }
+
+  return (
+    <button type="button" onClick={onClick} className={className}>
+      {content}
     </button>
   );
 }
+

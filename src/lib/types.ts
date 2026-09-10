@@ -1,13 +1,16 @@
 export type OperatingSystem = "ubuntu-22.04" | "ubuntu-24.04" | "debian-12";
 
 export interface ResourceRequirements {
+  os: OperatingSystem[];
   minRamGb: number;
   recommendedRamGb: number;
   minDiskGb: number;
   recommendedDiskGb: number;
   minCpu: number;
   recommendedCpu: number;
+  gpuRecommended?: boolean;
 }
+
 
 export interface Model {
   id: string;
@@ -54,6 +57,7 @@ export interface AgentStack {
   id: string;
   name: string;
   shortName: string;
+  icon: string;
   tagline: string;
   description: string;
   audience: string;
@@ -70,6 +74,7 @@ export interface AgentStack {
   dashboardCommand?: string;
   version?: string;
 }
+
 
 export interface ServerDetails {
   ip: string;
