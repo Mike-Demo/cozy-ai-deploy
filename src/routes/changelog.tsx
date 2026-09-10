@@ -78,8 +78,8 @@ function ChangelogPage() {
               <ul className="mt-3 space-y-2">
                 {entry.notes.map((note) => (
                   <li key={note} className="flex gap-2 text-sm text-text-muted">
-                    <i
-                      className="fa-solid fa-circle-small mt-2 text-[6px] text-accent"
+                    <span
+                      className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-accent"
                       aria-hidden="true"
                     />
                     <span>{note}</span>
