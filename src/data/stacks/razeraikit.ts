@@ -1,4 +1,5 @@
 import type { AgentStack } from "@/lib/types";
+import { debianOperatingSystems, rhelOperatingSystems } from "@/lib/os";
 
 export const razerAIKITStack: AgentStack = {
   id: "razeraikit",
@@ -12,7 +13,7 @@ export const razerAIKITStack: AgentStack = {
   estimatedSetupTime: "20–30 minutes",
   version: "1.0",
   requirements: {
-    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
+    os: [...rhelOperatingSystems, ...debianOperatingSystems],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,

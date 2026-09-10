@@ -1,4 +1,9 @@
 import type { AgentStack, Model } from "@/lib/types";
+import {
+  debianOperatingSystems,
+  rhelOperatingSystems,
+  windowsOperatingSystems,
+} from "@/lib/os";
 
 const models: Model[] = [
   {
@@ -54,7 +59,7 @@ export const ollamaStack: AgentStack = {
   estimatedSetupTime: "10–15 minutes",
   version: "1.0",
   requirements: {
-    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
+    os: [...rhelOperatingSystems, ...debianOperatingSystems, ...windowsOperatingSystems],
     minRamGb: 6,
     recommendedRamGb: 12,
     minDiskGb: 20,

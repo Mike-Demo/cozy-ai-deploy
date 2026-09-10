@@ -1,4 +1,23 @@
-export type OperatingSystem = "ubuntu-22.04" | "ubuntu-24.04" | "debian-12";
+export type OperatingSystem =
+  | "cloudlinux-9"
+  | "cloudlinux-8"
+  | "almalinux-10"
+  | "almalinux-9"
+  | "rocky-10"
+  | "rocky-9"
+  | "centos-stream-10"
+  | "centos-stream-9"
+  | "rhel-10"
+  | "rhel-9"
+  | "ubuntu-24.04"
+  | "ubuntu-22.04"
+  | "debian-13"
+  | "debian-12"
+  | "windows-server-2025"
+  | "windows-server-2022";
+
+/** Command dialect an operating system uses. */
+export type OsFamily = "debian" | "rhel" | "windows";
 
 export interface ResourceRequirements {
   os: OperatingSystem[];
@@ -116,4 +135,10 @@ export interface GeneratedGuide {
   recoveryCommands: string[];
   supportInfoCommands: string[];
   fitCheck: FitCheck;
+  /** Command dialect the guide was rendered for. */
+  osFamily: OsFamily;
+  /** Suggested download name: `.sh` on Linux, `.ps1` on Windows Server. */
+  scriptFilename: string;
+  /** True when the chosen operating system is not in the stack's tested list. */
+  osSupported: boolean;
 }

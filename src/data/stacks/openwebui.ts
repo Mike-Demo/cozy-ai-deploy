@@ -1,4 +1,9 @@
 import type { AgentStack, Model } from "@/lib/types";
+import {
+  debianOperatingSystems,
+  rhelOperatingSystems,
+  windowsOperatingSystems,
+} from "@/lib/os";
 
 const models: Model[] = [
   {
@@ -41,7 +46,7 @@ export const openWebUIStack: AgentStack = {
   estimatedSetupTime: "20–25 minutes",
   version: "1.0",
   requirements: {
-    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
+    os: [...rhelOperatingSystems, ...debianOperatingSystems, ...windowsOperatingSystems],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,

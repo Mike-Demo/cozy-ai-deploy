@@ -1,6 +1,7 @@
 import { useState, useMemo } from "react";
 import { getStackById } from "@/data/stacks";
 import { generateGuide } from "@/lib/generate";
+import { getOsLabel } from "@/lib/os";
 import type { ServerDetails } from "@/lib/types";
 import { CommandBlock } from "./CommandBlock";
 import { Troubleshooting } from "./Troubleshooting";
@@ -52,6 +53,18 @@ export function StepGuide({
           options you chose. Your progress is saved in this browser.
         </p>
       </div>
+
+      {!guide.osSupported && (
+        <div className="rounded-xl border border-warning/30 bg-warning-subtle/30 p-4 text-sm text-warning">
+          <p className="font-medium">
+            {stack.shortName} is not tested on {getOsLabel(server.operatingSystem)}
+          </p>
+          <p className="mt-1 opacity-90">
+            The commands below are translated for your system, but this stack is
+            tested on: {stack.requirements.os.map((os) => getOsLabel(os)).join(", ")}.
+          </p>
+        </div>
+      )}
 
       {!guide.fitCheck.ramOk || !guide.fitCheck.diskOk ? (
         <div className="rounded-xl border border-warning/30 bg-warning-subtle/30 p-4 text-sm text-warning">

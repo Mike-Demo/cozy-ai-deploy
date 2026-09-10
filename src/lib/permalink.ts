@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { getStackById } from "@/data/stacks";
+import { operatingSystemIds } from "@/lib/os";
 import type { OperatingSystem } from "@/lib/types";
 
 /**
@@ -48,11 +49,7 @@ export function parsePermalinkSearch(input: Record<string, unknown>): PermalinkS
   return search;
 }
 
-const OPERATING_SYSTEMS: OperatingSystem[] = [
-  "ubuntu-22.04",
-  "ubuntu-24.04",
-  "debian-12",
-];
+const OPERATING_SYSTEMS: OperatingSystem[] = operatingSystemIds;
 
 export interface ResolvedSelection {
   stackId: string | null;

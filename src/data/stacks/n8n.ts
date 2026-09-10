@@ -1,4 +1,9 @@
 import type { AgentStack } from "@/lib/types";
+import {
+  debianOperatingSystems,
+  rhelOperatingSystems,
+  windowsOperatingSystems,
+} from "@/lib/os";
 
 export const n8nStack: AgentStack = {
   id: "n8n",
@@ -12,7 +17,7 @@ export const n8nStack: AgentStack = {
   estimatedSetupTime: "20–25 minutes",
   version: "1.0",
   requirements: {
-    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
+    os: [...rhelOperatingSystems, ...debianOperatingSystems, ...windowsOperatingSystems],
     minRamGb: 8,
     recommendedRamGb: 16,
     minDiskGb: 40,

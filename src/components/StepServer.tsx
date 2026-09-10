@@ -1,18 +1,20 @@
+import { getStackById } from "@/data/stacks";
+import { getOsFamily, getOsLabel, groupedOperatingSystems } from "@/lib/os";
 import type { ServerDetails } from "@/lib/types";
 import { cn } from "@/lib/utils";
 
 interface StepServerProps {
   server: ServerDetails;
   onChange: (server: ServerDetails) => void;
+  stackId?: string | null;
 }
 
-const operatingSystems = [
-  { value: "ubuntu-22.04", label: "Ubuntu 22.04 LTS" },
-  { value: "ubuntu-24.04", label: "Ubuntu 24.04 LTS" },
-  { value: "debian-12", label: "Debian 12" },
-] as const;
+const osGroups = groupedOperatingSystems();
 
-export function StepServer({ server, onChange }: StepServerProps) {
+export function StepServer({ server, onChange, stackId }: StepServerProps) {
+  const stack = stackId ? getStackById(stackId) : undefined;
+  const supported = stack ? stack.requirements.os.includes(server.operatingSystem) : true;
+  const family = getOsFamily(server.operatingSystem);
   const update = <K extends keyof ServerDetails>(key: K, value: ServerDetails[K]) => {
     onChange({ ...server, [key]: value });
   };
@@ -68,12 +70,23 @@ export function StepServer({ server, onChange }: StepServerProps) {
             onChange={(e) => update("operatingSystem", e.target.value as ServerDetails["operatingSystem"])}
             className="w-full rounded-xl border border-border bg-surface px-4 py-3 text-sm text-text focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20"
           >
-            {operatingSystems.map((os) => (
-              <option key={os.value} value={os.value}>
-                {os.label}
-              </option>
+            {osGroups.map((group) => (
+              <optgroup key={group.group} label={group.group}>
+                {group.items.map((os) => (
+                  <option key={os.id} value={os.id}>
+                    {os.label}
+                  </option>
+                ))}
+              </optgroup>
             ))}
           </select>
+          <p className="text-xs text-text-muted">
+            {family === "windows"
+              ? "Commands will be shown in PowerShell and the script downloads as .ps1."
+              : family === "rhel"
+                ? "Commands will use dnf and firewalld."
+                : "Commands will use apt and ufw."}
+          </p>
         </div>
 
         <div className="space-y-2">
@@ -106,6 +119,18 @@ export function StepServer({ server, onChange }: StepServerProps) {
           />
         </div>
       </div>
+
+      {stack && !supported && (
+        <div className="rounded-xl border border-warning/30 bg-warning-subtle/30 p-4 text-sm text-warning">
+          <p className="font-medium">
+            {stack.shortName} is not tested on {getOsLabel(server.operatingSystem)}
+          </p>
+          <p className="mt-1 opacity-90">
+            We will still translate the commands for you, but this stack is tested
+            on: {stack.requirements.os.map((os) => getOsLabel(os)).join(", ")}.
+          </p>
+        </div>
+      )}
 
       <div className={cn(
         "rounded-xl border p-4 text-sm",

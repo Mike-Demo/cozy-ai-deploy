@@ -3,6 +3,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { getStackById } from "@/data/stacks";
 import { getRouteApi } from "@tanstack/react-router";
 import { buildPermalinkSearch, resolveSelection } from "@/lib/permalink";
+import { DEFAULT_OPERATING_SYSTEM } from "@/lib/os";
 import type { ServerDetails, WizardState } from "@/lib/types";
 import { cn } from "@/lib/utils";
 import { StepGuide } from "./StepGuide";
@@ -16,7 +17,7 @@ const routeApi = getRouteApi("/setup");
 const initialServer: ServerDetails = {
   ip: "",
   username: "root",
-  operatingSystem: "ubuntu-22.04",
+  operatingSystem: DEFAULT_OPERATING_SYSTEM,
 };
 
 const initialState: WizardState = {
@@ -198,7 +199,7 @@ export function Wizard() {
           />
         )}
         {state.step === 2 && (
-          <StepServer server={state.server} onChange={updateServer} />
+          <StepServer server={state.server} onChange={updateServer} stackId={state.stackId} />
         )}
         {state.step === 3 && state.stackId && (
           <StepGuide
