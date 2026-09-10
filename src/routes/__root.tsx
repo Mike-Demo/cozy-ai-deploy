@@ -10,6 +10,7 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import waThemeCss from "@/design-system/font-awsome-web-awesome-171158/webawesome/theme.css?url";
 import { WEB_AWESOME_HTML_CLASSES } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { jsonLdScript, organizationSchema, websiteSchema } from "@/lib/seo/structuredData";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   staticData: { sitemap: false },
