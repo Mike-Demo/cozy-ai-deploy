@@ -1,6 +1,12 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { getRouterInstance } from "@tanstack/react-start";
-import { sitemapStaticPaths, sitemapPathForLocation, sitemapXML, type SitemapEntry } from "@/lib/sitemap";
+import {
+  sitemapStaticPaths,
+  sitemapPathForLocation,
+  sitemapXML,
+  isSitemapRouteIncluded,
+  type SitemapEntry,
+} from "@/lib/sitemap";
 import { stacks } from "@/data/stacks";
 
 const BASE_URL = "https://local.mikedemo.dev";
@@ -16,10 +22,7 @@ export const Route = createFileRoute("/sitemap.xml")({
         const entries: SitemapEntry[] = sitemapStaticPaths(router).map((path) => ({ path }));
 
         // One guide page per catalog stack; the catalog is static local data.
-        if (
-          Object.prototype.hasOwnProperty.call(router.routesById, GUIDE_ROUTE_ID) &&
-          isIncluded(router, GUIDE_ROUTE_ID)
-        ) {
+        if (isSitemapRouteIncluded(router.routesById[GUIDE_ROUTE_ID])) {
           for (const stack of stacks) {
             const location = router.buildLocation({
               to: GUIDE_ROUTE_ID,
@@ -46,11 +49,3 @@ export const Route = createFileRoute("/sitemap.xml")({
     },
   },
 });
-
-function isIncluded(router: Awaited<ReturnType<typeof getRouterInstance>>, routeId: string): boolean {
-  // Local import kept lazy-free: reuse the helper's inclusion rules.
-  return import.meta.env.SSR
-    ? // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (router.routesById as any)[routeId]?.options?.staticData?.sitemap === true
-    : false;
-}
