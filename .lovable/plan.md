@@ -25,6 +25,8 @@ The catalog is data, so stacks are easy to add later. Launch set:
 - **Ollama only** — just the model runtime and an API on the server.
 - **Open WebUI + Ollama** — browser chat interface for the local models.
 - **n8n** — automation workflows that can call the local models.
+- **NVIDIA NemoClaw** — NVIDIA's agent stack, for servers with a GPU.
+- **Hermes** — the Hermes assistant models served locally.
 
 Each stack entry carries: description, requirements, options, ordered install steps, verification checks, and troubleshooting entries. Model entries carry size and RAM guidance so the fit check is accurate.
 
