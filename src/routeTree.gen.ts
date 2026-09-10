@@ -14,6 +14,7 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SetupRouteImport } from './routes/setup'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as LicensesRouteImport } from './routes/licenses'
+import { Route as FaqRouteImport } from './routes/faq'
 import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GuideStackIdRouteImport } from './routes/guide.$stackId'
@@ -43,6 +44,11 @@ const SecurityRoute = SecurityRouteImport.update({
 const LicensesRoute = LicensesRouteImport.update({
   id: '/licenses',
   path: '/licenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FaqRoute = FaqRouteImport.update({
+  id: '/faq',
+  path: '/faq',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ChangelogRoute = ChangelogRouteImport.update({
@@ -76,6 +82,7 @@ const Char91__componentChar93PreviewSplatRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/changelog': typeof ChangelogRoute
+  '/faq': typeof FaqRoute
   '/licenses': typeof LicensesRoute
   '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/changelog': typeof ChangelogRoute
+  '/faq': typeof FaqRoute
   '/licenses': typeof LicensesRoute
   '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/changelog': typeof ChangelogRoute
+  '/faq': typeof FaqRoute
   '/licenses': typeof LicensesRoute
   '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/changelog'
+    | '/faq'
     | '/licenses'
     | '/security'
     | '/setup'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/changelog'
+    | '/faq'
     | '/licenses'
     | '/security'
     | '/setup'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/changelog'
+    | '/faq'
     | '/licenses'
     | '/security'
     | '/setup'
@@ -152,6 +164,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ChangelogRoute: typeof ChangelogRoute
+  FaqRoute: typeof FaqRoute
   LicensesRoute: typeof LicensesRoute
   SecurityRoute: typeof SecurityRoute
   SetupRoute: typeof SetupRoute
@@ -199,6 +212,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LicensesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faq': {
+      id: '/faq'
+      path: '/faq'
+      fullPath: '/faq'
+      preLoaderRoute: typeof FaqRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/changelog': {
       id: '/changelog'
       path: '/changelog'
@@ -240,6 +260,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ChangelogRoute: ChangelogRoute,
+  FaqRoute: FaqRoute,
   LicensesRoute: LicensesRoute,
   SecurityRoute: SecurityRoute,
   SetupRoute: SetupRoute,

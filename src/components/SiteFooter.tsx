@@ -68,6 +68,9 @@ export function SiteFooter(): ReactElement {
           </div>
 
           <nav aria-label="Site information" className="flex flex-wrap gap-x-5 gap-y-2">
+            <Link to="/faq" className={linkClass}>
+              <i className="fa-solid fa-circle-question" aria-hidden="true" /> FAQ
+            </Link>
             <Link to="/licenses" className={linkClass}>
               <i className="fa-solid fa-code" aria-hidden="true" /> Open Source
             </Link>
