@@ -11,6 +11,9 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TroubleshootingRouteImport } from './routes/troubleshooting'
 import { Route as SetupRouteImport } from './routes/setup'
+import { Route as SecurityRouteImport } from './routes/security'
+import { Route as LicensesRouteImport } from './routes/licenses'
+import { Route as ChangelogRouteImport } from './routes/changelog'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as GuideStackIdRouteImport } from './routes/guide.$stackId'
 import { Route as Char91__mockupChar93PreviewSplatRouteImport } from './routes/[__mockup].preview.$'
@@ -24,6 +27,21 @@ const TroubleshootingRoute = TroubleshootingRouteImport.update({
 const SetupRoute = SetupRouteImport.update({
   id: '/setup',
   path: '/setup',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SecurityRoute = SecurityRouteImport.update({
+  id: '/security',
+  path: '/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LicensesRoute = LicensesRouteImport.update({
+  id: '/licenses',
+  path: '/licenses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ChangelogRoute = ChangelogRouteImport.update({
+  id: '/changelog',
+  path: '/changelog',
   getParentRoute: () => rootRouteImport,
 } as any)
 const IndexRoute = IndexRouteImport.update({
@@ -51,6 +69,9 @@ const Char91__componentChar93PreviewSplatRoute =
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/changelog': typeof ChangelogRoute
+  '/licenses': typeof LicensesRoute
+  '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
   '/troubleshooting': typeof TroubleshootingRoute
   '/guide/$stackId': typeof GuideStackIdRoute
@@ -59,6 +80,9 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/changelog': typeof ChangelogRoute
+  '/licenses': typeof LicensesRoute
+  '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
   '/troubleshooting': typeof TroubleshootingRoute
   '/guide/$stackId': typeof GuideStackIdRoute
@@ -68,6 +92,9 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/changelog': typeof ChangelogRoute
+  '/licenses': typeof LicensesRoute
+  '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
   '/troubleshooting': typeof TroubleshootingRoute
   '/guide/$stackId': typeof GuideStackIdRoute
@@ -78,6 +105,9 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/changelog'
+    | '/licenses'
+    | '/security'
     | '/setup'
     | '/troubleshooting'
     | '/guide/$stackId'
@@ -86,6 +116,9 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/changelog'
+    | '/licenses'
+    | '/security'
     | '/setup'
     | '/troubleshooting'
     | '/guide/$stackId'
@@ -94,6 +127,9 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/changelog'
+    | '/licenses'
+    | '/security'
     | '/setup'
     | '/troubleshooting'
     | '/guide/$stackId'
@@ -103,6 +139,9 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ChangelogRoute: typeof ChangelogRoute
+  LicensesRoute: typeof LicensesRoute
+  SecurityRoute: typeof SecurityRoute
   SetupRoute: typeof SetupRoute
   TroubleshootingRoute: typeof TroubleshootingRoute
   GuideStackIdRoute: typeof GuideStackIdRoute
@@ -124,6 +163,27 @@ declare module '@tanstack/react-router' {
       path: '/setup'
       fullPath: '/setup'
       preLoaderRoute: typeof SetupRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/security': {
+      id: '/security'
+      path: '/security'
+      fullPath: '/security'
+      preLoaderRoute: typeof SecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/licenses': {
+      id: '/licenses'
+      path: '/licenses'
+      fullPath: '/licenses'
+      preLoaderRoute: typeof LicensesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/changelog': {
+      id: '/changelog'
+      path: '/changelog'
+      fullPath: '/changelog'
+      preLoaderRoute: typeof ChangelogRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/': {
@@ -159,6 +219,9 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ChangelogRoute: ChangelogRoute,
+  LicensesRoute: LicensesRoute,
+  SecurityRoute: SecurityRoute,
   SetupRoute: SetupRoute,
   TroubleshootingRoute: TroubleshootingRoute,
   GuideStackIdRoute: GuideStackIdRoute,
