@@ -56,8 +56,9 @@ function pruneBuckets(now: number): void {
   }
 }
 
-function clientKey(): string {
+async function clientKey(): Promise<string> {
   try {
+    const { getRequest } = await import("@tanstack/start-server-core");
     const headers = getRequest().headers;
     const forwarded = headers.get("x-forwarded-for");
     const ip =
