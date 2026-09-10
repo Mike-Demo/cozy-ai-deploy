@@ -10,6 +10,9 @@ const models: Model[] = [
     minRamGb: 10,
     recommendedRamGb: 16,
     useCases: ["General chat", "Instruction following", "Assistant workflows"],
+    maintainer: "Nous Research (built on Meta's Llama 3.1)",
+    maintainerUrl: "https://nousresearch.com/",
+    bestFor: "A well-rounded assistant that follows instructions closely.",
   },
   {
     id: "hermes-2-pro-7b",
@@ -20,6 +23,9 @@ const models: Model[] = [
     minRamGb: 10,
     recommendedRamGb: 16,
     useCases: ["Tool use", "Reasoning", "Agent workflows"],
+    maintainer: "Nous Research",
+    maintainerUrl: "https://nousresearch.com/",
+    bestFor: "Agent tasks where the model has to call tools reliably.",
   },
 ];
 

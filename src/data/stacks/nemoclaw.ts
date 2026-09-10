@@ -10,6 +10,9 @@ const models: Model[] = [
     minRamGb: 8,
     recommendedRamGb: 16,
     useCases: ["Reasoning", "Agent orchestration", "GPU-accelerated inference"],
+    maintainer: "NVIDIA",
+    maintainerUrl: "https://huggingface.co/nvidia",
+    bestFor: "Reasoning and agent orchestration on a GPU server.",
   },
 ];
 
