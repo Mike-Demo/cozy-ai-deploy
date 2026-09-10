@@ -29,7 +29,19 @@ export default defineConfig(({ command, mode }) => {
       tailwindcss(),
       tsConfigPaths({ projects: ["./tsconfig.json"] }),
       ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
-      tanstackStart(),
+      // Static pages are rendered once at build time instead of on every
+      // request. Only routes whose HTML is identical for every visitor.
+      tanstackStart({
+        pages: [
+          { path: "/" },
+          { path: "/setup" },
+          { path: "/troubleshooting" },
+          { path: "/licenses" },
+          { path: "/changelog" },
+          { path: "/security" },
+        ],
+        prerender: { enabled: true, autoStaticPathsDiscovery: false },
+      }),
       viteReact(),
       ...(mode === "development" ? [componentTagger()] : []),
     ],
