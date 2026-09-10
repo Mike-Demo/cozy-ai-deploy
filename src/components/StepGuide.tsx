@@ -2,10 +2,9 @@ import { useState, useMemo } from "react";
 import { getStackById } from "@/data/stacks";
 import { generateGuide } from "@/lib/generate";
 import type { ServerDetails } from "@/lib/types";
-import { Checklist } from "./Checklist";
 import { CommandBlock } from "./CommandBlock";
 import { Troubleshooting } from "./Troubleshooting";
-import { ShareActions } from "./ShareActions";
+import { GuideWalkthrough } from "./GuideWalkthrough";
 import { cn } from "@/lib/utils";
 
 interface StepGuideProps {
@@ -15,7 +14,7 @@ interface StepGuideProps {
   server: ServerDetails;
 }
 
-type Tab = "one-command" | "steps" | "verify" | "troubleshoot";
+type Tab = "walkthrough" | "troubleshoot";
 
 export function StepGuide({
   stackId,
@@ -23,7 +22,7 @@ export function StepGuide({
   selectedOptionIds,
   server,
 }: StepGuideProps) {
-  const [activeTab, setActiveTab] = useState<Tab>("one-command");
+  const [activeTab, setActiveTab] = useState<Tab>("walkthrough");
 
   const stack = getStackById(stackId);
   const guide = useMemo(() => {
@@ -38,21 +37,9 @@ export function StepGuide({
   }
 
   const tabs: { id: Tab; label: string }[] = [
-    { id: "one-command", label: "One command" },
-    { id: "steps", label: "Step by step" },
-    { id: "verify", label: "Verify" },
+    { id: "walkthrough", label: "Walkthrough" },
     { id: "troubleshoot", label: "Troubleshoot" },
   ];
-
-  const downloadScript = () => {
-    const blob = new Blob([guide.script], { type: "text/x-shellscript" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = `${stack.id}-install.sh`;
-    a.click();
-    URL.revokeObjectURL(url);
-  };
 
   return (
     <div className="space-y-6">
@@ -62,7 +49,7 @@ export function StepGuide({
         </h2>
         <p className="mt-2 text-text-muted">
           Everything below is customized for {server.ip || "your server"} and the
-          options you chose.
+          options you chose. Your progress is saved in this browser.
         </p>
       </div>
 
@@ -97,58 +84,13 @@ export function StepGuide({
         </div>
       </div>
 
-      {activeTab === "one-command" && (
-        <div className="space-y-4">
-          <p className="text-sm text-text-muted">
-            Copy and paste this entire block into your terminal. It writes the
-            install script to your server and runs it.
-          </p>
-          <CommandBlock command={guide.oneLineCommand} />
-          <ShareActions
-            stackId={stack.id}
-            stackName={stack.name}
-            script={guide.script}
-            onDownload={downloadScript}
-          />
-        </div>
-      )}
-
-      {activeTab === "steps" && (
-        <div className="space-y-6">
-          {guide.steps.map((step, index) => (
-            <div key={index} className="rounded-xl border border-border bg-surface p-5 print-break-inside-avoid">
-              <div className="flex items-start gap-3">
-                <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-subtle text-accent text-sm font-semibold">
-                  {index + 1}
-                </span>
-                <div className="flex-1">
-                  <h3 className="font-heading text-lg font-medium text-text">
-                    {step.title}
-                  </h3>
-                  <p className="mt-1 text-sm text-text-muted">
-                    {step.description}
-                  </p>
-                  {step.note && (
-                    <p className="mt-2 text-sm text-info bg-info-subtle/30 border border-info/20 rounded-lg px-3 py-2">
-                      {step.note}
-                    </p>
-                  )}
-                  <div className="mt-4 space-y-2">
-                    {step.commands.map((command, cmdIndex) => (
-                      <CommandBlock key={cmdIndex} command={command} />
-                    ))}
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {activeTab === "verify" && (
-        <div className="space-y-6">
-          <Checklist checks={guide.verificationChecks} />
-        </div>
+      {activeTab === "walkthrough" && (
+        <GuideWalkthrough
+          stackId={stack.id}
+          stackName={stack.name}
+          guide={guide}
+          estimatedTime={stack.estimatedSetupTime}
+        />
       )}
 
       {activeTab === "troubleshoot" && (
