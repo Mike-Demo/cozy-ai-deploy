@@ -1,4 +1,16 @@
+@import "@fontsource-variable/dm-sans";
+@import "@fontsource-variable/space-grotesk";
+@import "@fontsource/dm-mono/400.css";
+@import "@fontsource/dm-mono/500.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
 @import "tailwindcss";
+
+/*
+ * Cascade order: Web Awesome's global element/utility styles sit in the
+ * lowest layer so Tailwind utilities always win. Without this, its global
+ * layout rules override the app's own grid/spacing classes.
+ */
+@layer webawesome, theme, base, components, utilities;
 
 @theme {
   /* Background & surface */
@@ -36,8 +48,8 @@
   --color-code-text: #e5e7eb;
 
   /* Typography */
-  --font-heading: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-heading: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  --font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
 
   /* Spacing scale (Tailwind defaults plus a few) */
