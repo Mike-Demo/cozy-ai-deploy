@@ -6,6 +6,7 @@ interface GuideDownloadsProps {
   stackName: string;
   script: string;
   checklistText: string;
+  scriptFilename?: string;
 }
 
 export function GuideDownloads({
@@ -13,7 +14,12 @@ export function GuideDownloads({
   stackName,
   script,
   checklistText,
+  scriptFilename,
 }: GuideDownloadsProps) {
+  const filename = scriptFilename ?? `${stackId}-install.sh`;
+  const mimeType = filename.endsWith(".ps1")
+    ? "text/plain"
+    : "text/x-shellscript";
   return (
     <div className="space-y-3 rounded-xl border border-border bg-surface p-4 print:hidden">
       <p className="text-sm font-medium text-text">Take it with you</p>
@@ -21,9 +27,8 @@ export function GuideDownloads({
         stackId={stackId}
         stackName={stackName}
         script={script}
-        onDownload={() =>
-          downloadTextFile(`${stackId}-install.sh`, script, "text/x-shellscript")
-        }
+        filename={filename}
+        onDownload={() => downloadTextFile(filename, script, mimeType)}
       />
       <div className="flex flex-wrap gap-3">
         <button

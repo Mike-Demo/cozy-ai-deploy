@@ -74,6 +74,7 @@ export function GuideWalkthrough({
           stackName={stackName}
           script={guide.script}
           checklistText={checklistText}
+          scriptFilename={guide.scriptFilename}
         />
       </div>
 

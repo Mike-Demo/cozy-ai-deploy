@@ -1,4 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { DEFAULT_OPERATING_SYSTEM } from "@/lib/os";
 import { getStackById } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { Logo } from "@/components/Logo";
@@ -43,7 +44,7 @@ export const Route = createFileRoute("/guide/$stackId")({
       stack,
       selectedModels: stack.models ?? [],
       selectedOptions: stack.options ?? [],
-      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: "ubuntu-22.04" },
+      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: DEFAULT_OPERATING_SYSTEM },
     });
 
     return {
@@ -107,7 +108,7 @@ function GuidePage() {
     server: {
       ip: "YOUR_SERVER_IP",
       username: "root",
-      operatingSystem: selection.operatingSystem ?? "ubuntu-22.04",
+      operatingSystem: selection.operatingSystem ?? DEFAULT_OPERATING_SYSTEM,
     },
   });
 

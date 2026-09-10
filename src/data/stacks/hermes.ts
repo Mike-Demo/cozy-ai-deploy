@@ -1,4 +1,5 @@
 import type { AgentStack, Model } from "@/lib/types";
+import { debianOperatingSystems, rhelOperatingSystems } from "@/lib/os";
 
 const models: Model[] = [
   {
@@ -41,7 +42,7 @@ export const hermesStack: AgentStack = {
   estimatedSetupTime: "15–25 minutes",
   version: "1.0",
   requirements: {
-    os: ["ubuntu-22.04", "ubuntu-24.04", "debian-12"],
+    os: [...rhelOperatingSystems, ...debianOperatingSystems],
     minRamGb: 10,
     recommendedRamGb: 16,
     minDiskGb: 30,
