@@ -2,6 +2,16 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { Wizard } from "@/components/Wizard";
 import { parsePermalinkSearch } from "@/lib/permalink";
+import { stacks } from "@/data/stacks";
+import {
+  breadcrumbSchema,
+  itemListSchema,
+  jsonLdScript,
+  webPageSchema,
+} from "@/lib/seo/structuredData";
+
+const DESCRIPTION =
+  "Choose your AI agent stack, models, and server details to generate a personalized VPS install guide.";
 
 export const Route = createFileRoute("/setup")({
   staticData: { sitemap: true },
@@ -10,7 +20,7 @@ export const Route = createFileRoute("/setup")({
   head: () => ({
     meta: [
       { title: "Build your install guide — Agent Deploy" },
-      { name: "description", content: "Choose your AI agent stack, models, and server details to generate a personalized VPS install guide." },
+      { name: "description", content: DESCRIPTION },
       { property: "og:title", content: "Build your install guide — Agent Deploy" },
       { property: "og:description", content: "Generate a personalized VPS install guide for self-hosted AI agents." },
       { property: "og:type", content: "website" },
@@ -18,6 +28,31 @@ export const Route = createFileRoute("/setup")({
       { property: "og:url", content: "https://local.mikedemo.dev/setup" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/setup" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({
+          name: "Build your install guide",
+          description: DESCRIPTION,
+          path: "/setup",
+        }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Build your install guide", path: "/setup" },
+        ]),
+      ),
+      jsonLdScript(
+        itemListSchema({
+          name: "Self-hosted AI agent stacks",
+          items: stacks.map((stack) => ({
+            name: stack.name,
+            description: stack.description,
+            path: `/guide/${stack.id}`,
+          })),
+        }),
+      ),
+    ],
   }),
 });
 

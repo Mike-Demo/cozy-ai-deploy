@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { changelogEntries } from "@/data/changelog";
 import type { ChangeKind } from "@/data/changelog";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 const TITLE = "Changelog — Agent Deploy";
 const DESCRIPTION =
@@ -21,6 +22,17 @@ export const Route = createFileRoute("/changelog")({
       { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/changelog" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({ name: "Changelog", description: DESCRIPTION, path: "/changelog" }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Changelog", path: "/changelog" },
+        ]),
+      ),
+    ],
   }),
 });
 

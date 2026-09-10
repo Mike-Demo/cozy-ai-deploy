@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { Layout } from "@/components/Layout";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 const TITLE = "Security — Agent Deploy";
 const DESCRIPTION =
@@ -20,6 +21,17 @@ export const Route = createFileRoute("/security")({
       { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/security" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({ name: "Security", description: DESCRIPTION, path: "/security" }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Security", path: "/security" },
+        ]),
+      ),
+    ],
   }),
 });
 

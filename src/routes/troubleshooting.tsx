@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { stacks } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { Troubleshooting } from "@/components/Troubleshooting";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 export const Route = createFileRoute("/troubleshooting")({
   staticData: { sitemap: true },
@@ -17,6 +18,21 @@ export const Route = createFileRoute("/troubleshooting")({
       { property: "og:url", content: "https://local.mikedemo.dev/troubleshooting" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/troubleshooting" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({
+          name: "Troubleshooting",
+          description: "Common problems and fixes for self-hosted AI agent stacks.",
+          path: "/troubleshooting",
+        }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Troubleshooting", path: "/troubleshooting" },
+        ]),
+      ),
+    ],
   }),
 });
 

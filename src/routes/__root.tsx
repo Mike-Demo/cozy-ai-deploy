@@ -10,6 +10,7 @@ import type { ReactNode } from "react";
 import appCss from "../styles.css?url";
 import waThemeCss from "@/design-system/font-awsome-web-awesome-171158/webawesome/theme.css?url";
 import { WEB_AWESOME_HTML_CLASSES } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
+import { jsonLdScript, organizationSchema, websiteSchema } from "@/lib/seo/structuredData";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   staticData: { sitemap: false },
@@ -56,6 +57,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },
       { rel: "apple-touch-icon", href: "/favicon.png" },
     ],
+    scripts: [jsonLdScript(websiteSchema()), jsonLdScript(organizationSchema())],
   }),
   shellComponent: RootShell,
   component: RootComponent,

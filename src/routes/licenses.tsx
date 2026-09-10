@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Layout } from "@/components/Layout";
 import { affiliationNote, creditGroups } from "@/data/credits";
+import { breadcrumbSchema, jsonLdScript, webPageSchema } from "@/lib/seo/structuredData";
 
 const TITLE = "Open source & credits — Agent Deploy";
 const DESCRIPTION =
@@ -20,6 +21,21 @@ export const Route = createFileRoute("/licenses")({
       { name: "twitter:card", content: "summary" },
     ],
     links: [{ rel: "canonical", href: "https://local.mikedemo.dev/licenses" }],
+    scripts: [
+      jsonLdScript(
+        webPageSchema({
+          name: "Open source & credits",
+          description: DESCRIPTION,
+          path: "/licenses",
+        }),
+      ),
+      jsonLdScript(
+        breadcrumbSchema([
+          { name: "Home", path: "/" },
+          { name: "Open source & credits", path: "/licenses" },
+        ]),
+      ),
+    ],
   }),
 });
 
