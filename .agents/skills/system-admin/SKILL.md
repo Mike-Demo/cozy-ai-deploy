@@ -1,9 +1,6 @@
 ---
 name: system-admin
-description: Linux system administration and monitoring
-version: 1.0.0
-author: terminal-skills
-tags: [linux, system, monitoring, admin]
+description: Quick Linux command reference for system information, hardware details, resource monitoring, systemd service control, health checks, and high-load triage. Use when looking up or writing commands to inspect, monitor, or manage a Linux server.
 ---
 
 # Linux System Administration
