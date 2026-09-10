@@ -48,8 +48,8 @@
   --color-code-text: #e5e7eb;
 
   /* Typography */
-  --font-heading: "Space Grotesk", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-heading: "Space Grotesk Variable", "Space Grotesk", system-ui, sans-serif;
+  --font-body: "DM Sans Variable", "DM Sans", system-ui, sans-serif;
   --font-mono: "DM Mono", ui-monospace, monospace;
 
   /* Spacing scale (Tailwind defaults plus a few) */
