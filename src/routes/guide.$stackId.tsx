@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { CommandBlock } from "@/components/CommandBlock";
 import { Checklist } from "@/components/Checklist";
 import { Troubleshooting } from "@/components/Troubleshooting";
+import { ShareActions } from "@/components/ShareActions";
 import { generateGuide } from "@/lib/generate";
 
 export const Route = createFileRoute("/guide/$stackId")({
@@ -95,6 +96,24 @@ function GuidePage() {
               with your server address, then paste the whole block into your terminal.
             </p>
             <CommandBlock command={guide.oneLineCommand} />
+            <div className="mt-4">
+              <ShareActions
+                stackId={stack.id}
+                stackName={stack.name}
+                script={guide.script}
+                onDownload={() => {
+                  const blob = new Blob([guide.script], {
+                    type: "text/x-shellscript",
+                  });
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement("a");
+                  a.href = url;
+                  a.download = `${stack.id}-install.sh`;
+                  a.click();
+                  URL.revokeObjectURL(url);
+                }}
+              />
+            </div>
           </section>
 
           <section>
