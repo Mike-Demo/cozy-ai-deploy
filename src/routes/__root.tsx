@@ -12,6 +12,7 @@ import waThemeCss from "@/design-system/font-awsome-web-awesome-171158/webawesom
 import { WEB_AWESOME_HTML_CLASSES } from "@/design-system/font-awsome-web-awesome-171158/webawesome/setup";
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
+  staticData: { sitemap: false },
   head: () => ({
     meta: [
       { charSet: "utf-8" },
@@ -33,6 +34,19 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossOrigin: "anonymous" },
+      {
+        rel: "stylesheet",
+        href: "https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.12.0/dist/styles/layers.css",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.12.0/dist/styles/themes/default.css",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://cdn.jsdelivr.net/npm/@awesome.me/webawesome@3.12.0/dist/styles/utilities.css",
+      },
       { rel: "stylesheet", href: appCss },
       { rel: "stylesheet", href: waThemeCss },
       { rel: "icon", href: "/favicon.svg", type: "image/svg+xml" },

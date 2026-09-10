@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Wizard } from "@/components/Wizard";
 
 export const Route = createFileRoute("/setup")({
+  staticData: { sitemap: true },
   component: SetupPage,
   head: () => ({
     meta: [
@@ -12,13 +13,23 @@ export const Route = createFileRoute("/setup")({
       { property: "og:description", content: "Generate a personalized VPS install guide for self-hosted AI agents." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://local.mikedemo.dev/setup" },
     ],
+    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/setup" }],
   }),
 });
 
 function SetupPage() {
   return (
     <Layout>
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 pt-12 sm:pt-16">
+        <h1 className="font-heading text-3xl font-semibold text-text">
+          Build your install guide
+        </h1>
+        <p className="mt-2 text-text-muted">
+          Answer four short steps and get copy-and-paste commands for your own server.
+        </p>
+      </div>
       <Wizard />
     </Layout>
   );

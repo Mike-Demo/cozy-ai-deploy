@@ -8,21 +8,63 @@ import { Troubleshooting } from "@/components/Troubleshooting";
 import { ShareActions } from "@/components/ShareActions";
 import { generateGuide } from "@/lib/generate";
 
+const SITE_URL = "https://local.mikedemo.dev";
+
 export const Route = createFileRoute("/guide/$stackId")({
+  staticData: { sitemap: true },
   component: GuidePage,
   head: ({ params }) => {
     const stack = getStackById(params.stackId);
     const title = stack
       ? `${stack.name} install guide — Agent Deploy`
       : "Install guide — Agent Deploy";
+    const fallbackDescription = "Reference install guide for a self-hosted AI agent stack.";
+    const description = stack?.description ?? fallbackDescription;
+    const url = `${SITE_URL}/guide/${params.stackId}`;
+
+    const meta = [
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
+      { property: "og:type", content: "article" },
+      { property: "og:url", content: url },
+      { name: "twitter:card", content: "summary" },
+    ];
+    const links = [{ rel: "canonical", href: url }];
+
+    if (!stack) {
+      return { meta, links };
+    }
+
+    const guide = generateGuide({
+      stack,
+      selectedModels: stack.models ?? [],
+      selectedOptions: stack.options ?? [],
+      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: "ubuntu-22.04" },
+    });
+
     return {
-      meta: [
-        { title },
-        { name: "description", content: stack?.description ?? "Reference install guide for a self-hosted AI agent stack." },
-        { property: "og:title", content: title },
-        { property: "og:description", content: stack?.description ?? "" },
-        { property: "og:type", content: "website" },
-        { name: "twitter:card", content: "summary" },
+      meta,
+      links,
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "HowTo",
+            name: `${stack.name} install guide`,
+            description,
+            totalTime: stack.estimatedSetupTime,
+            step: guide.steps.map((step, index) => ({
+              "@type": "HowToStep",
+              position: index + 1,
+              name: step.title,
+              text: step.description,
+              url: `${url}#step-${index + 1}`,
+            })),
+          }),
+        },
       ],
     };
   },

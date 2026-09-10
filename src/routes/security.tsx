@@ -7,6 +7,7 @@ const DESCRIPTION =
   "What Agent Deploy stores, what stays in your browser, what never leaves it, and how to run the generated commands safely.";
 
 export const Route = createFileRoute("/security")({
+  staticData: { sitemap: true },
   component: SecurityPage,
   head: () => ({
     meta: [

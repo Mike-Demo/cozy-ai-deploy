@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { Troubleshooting } from "@/components/Troubleshooting";
 
 export const Route = createFileRoute("/troubleshooting")({
+  staticData: { sitemap: true },
   component: TroubleshootingPage,
   head: () => ({
     meta: [
@@ -13,7 +14,9 @@ export const Route = createFileRoute("/troubleshooting")({
       { property: "og:description", content: "Common problems and fixes for self-hosted AI agent stacks." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
+      { property: "og:url", content: "https://local.mikedemo.dev/troubleshooting" },
     ],
+    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/troubleshooting" }],
   }),
 });
 
