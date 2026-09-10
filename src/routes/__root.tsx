@@ -32,6 +32,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      {
+        name: "google-site-verification",
+        content: "R6hQHXfB40hGRG2fDRerGghcO1sUGKWeVRHGlCnmcAQ",
+      },
     ],
     links: [
       { rel: "preconnect", href: "https://cdn.jsdelivr.net", crossOrigin: "anonymous" },
