@@ -131,79 +131,12 @@ function GuidePage() {
             </ul>
           </section>
 
-          <section>
-            <h2 className="font-heading text-xl font-semibold text-text mb-4">
-              One-command installer
-            </h2>
-            <p className="mb-3 text-sm text-text-muted">
-              Replace <code className="rounded bg-surface-muted px-1 py-0.5 text-text">YOUR_SERVER_IP</code>{" "}
-              with your server address, then paste the whole block into your terminal.
-            </p>
-            <CommandBlock command={guide.oneLineCommand} />
-            <div className="mt-4">
-              <ShareActions
-                stackId={stack.id}
-                stackName={stack.name}
-                script={guide.script}
-                onDownload={() => {
-                  const blob = new Blob([guide.script], {
-                    type: "text/x-shellscript",
-                  });
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement("a");
-                  a.href = url;
-                  a.download = `${stack.id}-install.sh`;
-                  a.click();
-                  URL.revokeObjectURL(url);
-                }}
-              />
-            </div>
-          </section>
-
-          <section>
-            <h2 className="font-heading text-xl font-semibold text-text mb-4">
-              Step-by-step
-            </h2>
-            <div className="space-y-6">
-              {guide.steps.map((step, index) => (
-                <div
-                  key={index}
-                  className="rounded-xl border border-border bg-surface p-5 print-break-inside-avoid"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-subtle text-accent text-sm font-semibold">
-                      {index + 1}
-                    </span>
-                    <div className="flex-1">
-                      <h3 className="font-heading text-lg font-medium text-text">
-                        {step.title}
-                      </h3>
-                      <p className="mt-1 text-sm text-text-muted">
-                        {step.description}
-                      </p>
-                      {step.note && (
-                        <p className="mt-2 text-sm text-info bg-info-subtle/30 border border-info/20 rounded-lg px-3 py-2">
-                          {step.note}
-                        </p>
-                      )}
-                      <div className="mt-4 space-y-2">
-                        {step.commands.map((command, cmdIndex) => (
-                          <CommandBlock key={cmdIndex} command={command} />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section>
-            <h2 className="font-heading text-xl font-semibold text-text mb-4">
-              Verification
-            </h2>
-            <Checklist checks={guide.verificationChecks} />
-          </section>
+          <GuideWalkthrough
+            stackId={stack.id}
+            stackName={stack.name}
+            guide={guide}
+            estimatedTime={stack.estimatedSetupTime}
+          />
 
           <section>
             <h2 className="font-heading text-xl font-semibold text-text mb-4">
