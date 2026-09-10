@@ -4,6 +4,7 @@ import { Layout } from "@/components/Layout";
 import { Troubleshooting } from "@/components/Troubleshooting";
 
 export const Route = createFileRoute("/troubleshooting")({
+  staticData: { sitemap: true },
   component: TroubleshootingPage,
   head: () => ({
     meta: [

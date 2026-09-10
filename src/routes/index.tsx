@@ -5,6 +5,7 @@ import { StackCard } from "@/components/StackCard";
 import { Logo } from "@/components/Logo";
 
 export const Route = createFileRoute("/")({
+  staticData: { sitemap: true },
   component: HomePage,
   head: () => ({
     meta: [

@@ -3,6 +3,7 @@ import { Layout } from "@/components/Layout";
 import { Wizard } from "@/components/Wizard";
 
 export const Route = createFileRoute("/setup")({
+  staticData: { sitemap: true },
   component: SetupPage,
   head: () => ({
     meta: [

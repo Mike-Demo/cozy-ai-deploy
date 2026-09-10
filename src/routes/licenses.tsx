@@ -7,6 +7,7 @@ const DESCRIPTION =
   "The libraries, fonts, and services behind Agent Deploy, and the licenses of the software its guides install.";
 
 export const Route = createFileRoute("/licenses")({
+  staticData: { sitemap: true },
   component: LicensesPage,
   head: () => ({
     meta: [

@@ -8,6 +8,7 @@ const DESCRIPTION =
   "What changed in Agent Deploy: new stacks, new sharing options, and fixes, in plain language.";
 
 export const Route = createFileRoute("/changelog")({
+  staticData: { sitemap: true },
   component: ChangelogPage,
   head: () => ({
     meta: [

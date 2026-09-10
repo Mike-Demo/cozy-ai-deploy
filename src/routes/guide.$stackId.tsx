@@ -9,6 +9,7 @@ import { ShareActions } from "@/components/ShareActions";
 import { generateGuide } from "@/lib/generate";
 
 export const Route = createFileRoute("/guide/$stackId")({
+  staticData: { sitemap: true },
   component: GuidePage,
   head: ({ params }) => {
     const stack = getStackById(params.stackId);
