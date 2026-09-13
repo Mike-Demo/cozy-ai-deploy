@@ -13,6 +13,17 @@ import { breadcrumbSchema, jsonLdScript } from "@/lib/seo/structuredData";
 
 const SITE_URL = "https://local.mikedemo.dev";
 
+/**
+ * A public guide has no chosen server, so it must default to a system the stack
+ * is actually tested on — otherwise commands get translated to a package
+ * manager the stack's packages don't exist in.
+ */
+function defaultOsForStack(stack: AgentStack): OperatingSystem {
+  const supported = stack.requirements.os;
+  if (supported.includes(DEFAULT_OPERATING_SYSTEM)) return DEFAULT_OPERATING_SYSTEM;
+  return supported[0] ?? DEFAULT_OPERATING_SYSTEM;
+}
+
 export const Route = createFileRoute("/guide/$stackId")({
   staticData: { sitemap: true },
   validateSearch: (search: Record<string, unknown>) => parsePermalinkSearch(search),
