@@ -113,6 +113,8 @@ function GuidePage() {
       ? (stack.options ?? []).filter((o) => selection.optionIds.includes(o.id))
       : (stack.options ?? []);
 
+  const guideOs = selection.operatingSystem ?? defaultOsForStack(stack);
+
   const guide = generateGuide({
     stack,
     selectedModels,
