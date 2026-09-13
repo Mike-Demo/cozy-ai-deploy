@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { DEFAULT_OPERATING_SYSTEM } from "@/lib/os";
+import { DEFAULT_OPERATING_SYSTEM, getOsLabel } from "@/lib/os";
+import type { AgentStack, OperatingSystem } from "@/lib/types";
 import { getStackById } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { Logo } from "@/components/Logo";
