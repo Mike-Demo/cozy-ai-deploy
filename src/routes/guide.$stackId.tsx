@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { DEFAULT_OPERATING_SYSTEM } from "@/lib/os";
+import { DEFAULT_OPERATING_SYSTEM, getOsLabel } from "@/lib/os";
+import type { AgentStack, OperatingSystem } from "@/lib/types";
 import { getStackById } from "@/data/stacks";
 import { Layout } from "@/components/Layout";
 import { Logo } from "@/components/Logo";
@@ -11,6 +12,17 @@ import { parsePermalinkSearch, resolveSelection } from "@/lib/permalink";
 import { breadcrumbSchema, jsonLdScript } from "@/lib/seo/structuredData";
 
 const SITE_URL = "https://local.mikedemo.dev";
+
+/**
+ * A public guide has no chosen server, so it must default to a system the stack
+ * is actually tested on — otherwise commands get translated to a package
+ * manager the stack's packages don't exist in.
+ */
+function defaultOsForStack(stack: AgentStack): OperatingSystem {
+  const supported = stack.requirements.os;
+  if (supported.includes(DEFAULT_OPERATING_SYSTEM)) return DEFAULT_OPERATING_SYSTEM;
+  return supported[0] ?? DEFAULT_OPERATING_SYSTEM;
+}
 
 export const Route = createFileRoute("/guide/$stackId")({
   staticData: { sitemap: true },
@@ -44,7 +56,7 @@ export const Route = createFileRoute("/guide/$stackId")({
       stack,
       selectedModels: stack.models ?? [],
       selectedOptions: stack.options ?? [],
-      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: DEFAULT_OPERATING_SYSTEM },
+      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: defaultOsForStack(stack) },
     });
 
     return {
@@ -101,6 +113,8 @@ function GuidePage() {
       ? (stack.options ?? []).filter((o) => selection.optionIds.includes(o.id))
       : (stack.options ?? []);
 
+  const guideOs = selection.operatingSystem ?? defaultOsForStack(stack);
+
   const guide = generateGuide({
     stack,
     selectedModels,
@@ -108,7 +122,7 @@ function GuidePage() {
     server: {
       ip: "YOUR_SERVER_IP",
       username: "root",
-      operatingSystem: selection.operatingSystem ?? DEFAULT_OPERATING_SYSTEM,
+      operatingSystem: guideOs,
     },
   });
 
@@ -143,7 +157,7 @@ function GuidePage() {
             <ul className="grid gap-2 sm:grid-cols-2">
               <li className="rounded-lg border border-border bg-surface px-4 py-3 text-sm text-text">
                 <span className="text-text-muted">OS:</span>{" "}
-                {stack.requirements.os.join(", ")}
+                {stack.requirements.os.map((os) => getOsLabel(os)).join(", ")}
               </li>
               <li className="rounded-lg border border-border bg-surface px-4 py-3 text-sm text-text">
                 <span className="text-text-muted">RAM:</span>{" "}
@@ -159,7 +173,23 @@ function GuidePage() {
                 </li>
               )}
             </ul>
+            <p className="mt-3 text-sm text-text-muted">
+              Commands below are written for {getOsLabel(guideOs)}.
+            </p>
+            {!guide.osSupported && (
+              <div className="mt-3 rounded-xl border border-warning/30 bg-warning-subtle/30 p-4 text-sm text-warning">
+                <p className="font-medium">
+                  {stack.shortName} is not tested on {getOsLabel(guideOs)}
+                </p>
+                <p className="mt-1 opacity-90">
+                  The commands are translated for that system, but this stack is
+                  tested on:{" "}
+                  {stack.requirements.os.map((os) => getOsLabel(os)).join(", ")}.
+                </p>
+              </div>
+            )}
           </section>
+
 
           <GuideWalkthrough
             stackId={stack.id}
