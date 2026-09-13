@@ -173,7 +173,23 @@ function GuidePage() {
                 </li>
               )}
             </ul>
+            <p className="mt-3 text-sm text-text-muted">
+              Commands below are written for {getOsLabel(guideOs)}.
+            </p>
+            {!guide.osSupported && (
+              <div className="mt-3 rounded-xl border border-warning/30 bg-warning-subtle/30 p-4 text-sm text-warning">
+                <p className="font-medium">
+                  {stack.shortName} is not tested on {getOsLabel(guideOs)}
+                </p>
+                <p className="mt-1 opacity-90">
+                  The commands are translated for that system, but this stack is
+                  tested on:{" "}
+                  {stack.requirements.os.map((os) => getOsLabel(os)).join(", ")}.
+                </p>
+              </div>
+            )}
           </section>
+
 
           <GuideWalkthrough
             stackId={stack.id}
