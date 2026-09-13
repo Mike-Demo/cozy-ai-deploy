@@ -120,7 +120,7 @@ function GuidePage() {
     server: {
       ip: "YOUR_SERVER_IP",
       username: "root",
-      operatingSystem: selection.operatingSystem ?? DEFAULT_OPERATING_SYSTEM,
+      operatingSystem: guideOs,
     },
   });
 
