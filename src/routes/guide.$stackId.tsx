@@ -157,7 +157,7 @@ function GuidePage() {
             <ul className="grid gap-2 sm:grid-cols-2">
               <li className="rounded-lg border border-border bg-surface px-4 py-3 text-sm text-text">
                 <span className="text-text-muted">OS:</span>{" "}
-                {stack.requirements.os.join(", ")}
+                {stack.requirements.os.map((os) => getOsLabel(os)).join(", ")}
               </li>
               <li className="rounded-lg border border-border bg-surface px-4 py-3 text-sm text-text">
                 <span className="text-text-muted">RAM:</span>{" "}
