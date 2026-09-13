@@ -56,7 +56,7 @@ export const Route = createFileRoute("/guide/$stackId")({
       stack,
       selectedModels: stack.models ?? [],
       selectedOptions: stack.options ?? [],
-      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: DEFAULT_OPERATING_SYSTEM },
+      server: { ip: "YOUR_SERVER_IP", username: "root", operatingSystem: defaultOsForStack(stack) },
     });
 
     return {
