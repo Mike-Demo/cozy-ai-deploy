@@ -1,7 +1,6 @@
 import path from "path";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
-import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { componentTagger } from "lovable-tagger";
@@ -69,7 +68,6 @@ export default defineConfig(({ mode }) => {
       mockupPreviewPlugin(),
       tailwindcss(),
       tsConfigPaths({ projects: ["./tsconfig.json"] }),
-      ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
       tanstackStart({
         // Static hosting: every public route is prerendered to HTML at build
         // time. Listed explicitly so nothing is guessed from the route tree.
