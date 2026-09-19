@@ -5,7 +5,7 @@
 
 declare module "@tanstack/react-router" {
   interface StaticDataRouteOption {
-    sitemap: boolean | "exclude-subtree";
+    sitemap?: boolean | "exclude-subtree";
   }
 }
 
