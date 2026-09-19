@@ -10,7 +10,6 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as TroubleshootingRouteImport } from './routes/troubleshooting'
-import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as SetupRouteImport } from './routes/setup'
 import { Route as SecurityRouteImport } from './routes/security'
 import { Route as LicensesRouteImport } from './routes/licenses'
@@ -24,11 +23,6 @@ import { Route as Char91__componentChar93PreviewSplatRouteImport } from './route
 const TroubleshootingRoute = TroubleshootingRouteImport.update({
   id: '/troubleshooting',
   path: '/troubleshooting',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
-  id: '/sitemap.xml',
-  path: '/sitemap.xml',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SetupRoute = SetupRouteImport.update({
@@ -86,7 +80,6 @@ export interface FileRoutesByFullPath {
   '/licenses': typeof LicensesRoute
   '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/troubleshooting': typeof TroubleshootingRoute
   '/guide/$stackId': typeof GuideStackIdRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
@@ -99,7 +92,6 @@ export interface FileRoutesByTo {
   '/licenses': typeof LicensesRoute
   '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/troubleshooting': typeof TroubleshootingRoute
   '/guide/$stackId': typeof GuideStackIdRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
@@ -113,7 +105,6 @@ export interface FileRoutesById {
   '/licenses': typeof LicensesRoute
   '/security': typeof SecurityRoute
   '/setup': typeof SetupRoute
-  '/sitemap.xml': typeof SitemapDotxmlRoute
   '/troubleshooting': typeof TroubleshootingRoute
   '/guide/$stackId': typeof GuideStackIdRoute
   '/__component/preview/$': typeof Char91__componentChar93PreviewSplatRoute
@@ -128,7 +119,6 @@ export interface FileRouteTypes {
     | '/licenses'
     | '/security'
     | '/setup'
-    | '/sitemap.xml'
     | '/troubleshooting'
     | '/guide/$stackId'
     | '/__component/preview/$'
@@ -141,7 +131,6 @@ export interface FileRouteTypes {
     | '/licenses'
     | '/security'
     | '/setup'
-    | '/sitemap.xml'
     | '/troubleshooting'
     | '/guide/$stackId'
     | '/__component/preview/$'
@@ -154,7 +143,6 @@ export interface FileRouteTypes {
     | '/licenses'
     | '/security'
     | '/setup'
-    | '/sitemap.xml'
     | '/troubleshooting'
     | '/guide/$stackId'
     | '/__component/preview/$'
@@ -168,7 +156,6 @@ export interface RootRouteChildren {
   LicensesRoute: typeof LicensesRoute
   SecurityRoute: typeof SecurityRoute
   SetupRoute: typeof SetupRoute
-  SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   TroubleshootingRoute: typeof TroubleshootingRoute
   GuideStackIdRoute: typeof GuideStackIdRoute
   Char91__componentChar93PreviewSplatRoute: typeof Char91__componentChar93PreviewSplatRoute
@@ -182,13 +169,6 @@ declare module '@tanstack/react-router' {
       path: '/troubleshooting'
       fullPath: '/troubleshooting'
       preLoaderRoute: typeof TroubleshootingRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/sitemap.xml': {
-      id: '/sitemap.xml'
-      path: '/sitemap.xml'
-      fullPath: '/sitemap.xml'
-      preLoaderRoute: typeof SitemapDotxmlRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/setup': {
@@ -264,7 +244,6 @@ const rootRouteChildren: RootRouteChildren = {
   LicensesRoute: LicensesRoute,
   SecurityRoute: SecurityRoute,
   SetupRoute: SetupRoute,
-  SitemapDotxmlRoute: SitemapDotxmlRoute,
   TroubleshootingRoute: TroubleshootingRoute,
   GuideStackIdRoute: GuideStackIdRoute,
   Char91__componentChar93PreviewSplatRoute:
