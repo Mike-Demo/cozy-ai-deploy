@@ -34,10 +34,11 @@ const TANSTACK_SSR_DEPS = [
   "@tanstack/react-start-server",
 ];
 
-export default defineConfig(({ command, mode }) => {
-  // Cloudflare Workers plugin only on build (produces the worker output);
-  // the workerd runtime isn't available for the dev server.
-  const useCloudflare = command === "build";
+export default defineConfig(({ mode }) => {
+  // The site ships as prerendered static HTML, so the build must not target the
+  // Cloudflare Workers runtime: that output renames the SSR entry and the
+  // prerender pass can't boot it. Static output lands in dist/client.
+  const useCloudflare = false;
 
   return {
     server: {
