@@ -35,3 +35,11 @@ added, update that list and `public/sitemap.xml`.
   output already lives in `dist/client`.
 - The site stores user choices in the URL and in browser storage only. There is
   no database, login, or server function at request time.
+
+## No Cloudflare Workers target
+
+`wrangler.jsonc` and `@cloudflare/vite-plugin` were removed. Static hosts reject
+Worker entrypoints ("cloudflare-pages: Cloudflare Worker entrypoints are not
+converted"), and the Workers output renames the SSR entry so the prerender pass
+cannot boot it. Do not re-add either unless the site goes back to server
+rendering.

@@ -1,7 +1,6 @@
 import path from "path";
 import { defineConfig } from "vite";
 import tsConfigPaths from "vite-tsconfig-paths";
-import { cloudflare } from "@cloudflare/vite-plugin";
 import { tanstackStart } from "@tanstack/react-start/plugin/vite";
 import viteReact from "@vitejs/plugin-react";
 import { componentTagger } from "lovable-tagger";
@@ -34,12 +33,10 @@ const TANSTACK_SSR_DEPS = [
   "@tanstack/react-start-server",
 ];
 
+// The site ships as prerendered static HTML in dist/client. There is no
+// Cloudflare Workers target: that output renames the SSR entry so the prerender
+// pass can't boot it, and static hosts reject Worker entrypoints outright.
 export default defineConfig(({ mode }) => {
-  // The site ships as prerendered static HTML, so the build must not target the
-  // Cloudflare Workers runtime: that output renames the SSR entry and the
-  // prerender pass can't boot it. Static output lands in dist/client.
-  const useCloudflare = false;
-
   return {
     server: {
       host: "::",
@@ -69,7 +66,6 @@ export default defineConfig(({ mode }) => {
       mockupPreviewPlugin(),
       tailwindcss(),
       tsConfigPaths({ projects: ["./tsconfig.json"] }),
-      ...(useCloudflare ? [cloudflare({ viteEnvironment: { name: "ssr" } })] : []),
       tanstackStart({
         // Static hosting: every public route is prerendered to HTML at build
         // time. Listed explicitly so nothing is guessed from the route tree.
