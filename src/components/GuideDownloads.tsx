@@ -24,10 +24,8 @@ export function GuideDownloads({
     <div className="space-y-3 rounded-xl border border-border bg-surface p-4 print:hidden">
       <p className="text-sm font-medium text-text">Take it with you</p>
       <ShareActions
-        stackId={stackId}
         stackName={stackName}
         script={script}
-        filename={filename}
         onDownload={() => downloadTextFile(filename, script, mimeType)}
       />
       <div className="flex flex-wrap gap-3">
