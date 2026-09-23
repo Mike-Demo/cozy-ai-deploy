@@ -52,6 +52,9 @@ export const FONT_AWESOME_STYLE_URL = `${FONT_AWESOME_CDN}/css/all.min.css`;
 /** Where <wa-icon> fetches SVGs from. */
 export const FONT_AWESOME_ICON_PATH = `${FONT_AWESOME_CDN}/svgs`;
 
+/** Anti-FOUCE utility stylesheet: wa-cloak hides unregistered elements. */
+export const WEB_AWESOME_FOUCE_STYLE_URL = `${WEB_AWESOME_ASSET_CDN}/styles/utilities/fouce.css`;
+
 /** Both stylesheets, in load order, for <link rel="stylesheet"> tags. */
 export const WEB_AWESOME_STYLE_URLS = [WEB_AWESOME_STYLE_URL, FONT_AWESOME_STYLE_URL] as const;
 
