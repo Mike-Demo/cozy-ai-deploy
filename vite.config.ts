@@ -25,6 +25,7 @@ const STATIC_ROUTES = [
   "/guide/nemoclaw",
   "/guide/hermes",
   "/guide/razeraikit",
+  "/guide/atomic-agents",
 ];
 
 const TANSTACK_SSR_DEPS = [
