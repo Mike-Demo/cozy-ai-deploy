@@ -16,7 +16,7 @@ build time and needs no server at request time.
 `/`, `/setup`, `/faq`, `/troubleshooting`, `/licenses`, `/security`,
 `/changelog`, and one guide page per stack: `/guide/openclaw`,
 `/guide/ollama`, `/guide/openwebui`, `/guide/n8n`, `/guide/nemoclaw`,
-`/guide/hermes`, `/guide/razeraikit`.
+`/guide/hermes`, `/guide/razeraikit`, `/guide/atomic-agents`.
 
 The list lives in `STATIC_ROUTES` in `vite.config.ts`. When a route or stack is
 added, update that list and `public/sitemap.xml`.
