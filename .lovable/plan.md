@@ -36,7 +36,7 @@ Open WebUI, n8n, NemoClaw, Hermes and Razer AIKIT.
 | Checks, troubleshooting, recovery | 30 min |
 | Wire-up (wizard, route, sitemap, build spec) | 15 min |
 | Build + browser verification | 20–30 min |
-| **Total** | **~2.5–3 hours of build time** |
+| **Total** | **~2.5–3 hours of build time, roughly 4–8 credits** |
 
 No new dependencies, no backend work, no design changes — it reuses the
 existing guide machinery end to end.
