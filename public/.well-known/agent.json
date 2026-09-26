@@ -1,0 +1,59 @@
+{
+  "name": "Agent Deploy",
+  "description": "Self-hosted AI agent installer. Browse step-by-step install guides for running AI agents and local models (OpenClaw, Ollama, Open WebUI, n8n, NVIDIA NemoClaw, Hermes, Razer AIKIT, Atomic Agents) on your own server, read personalized setup instructions, and look up troubleshooting help.",
+  "url": "https://ai.mikedemo.dev",
+  "version": "1.0.0",
+  "capabilities": {
+    "streaming": false
+  },
+  "defaultInputModes": [
+    "text"
+  ],
+  "defaultOutputModes": [
+    "text"
+  ],
+  "skills": [
+    {
+      "id": "browse-install-guides",
+      "name": "Browse install guides",
+      "description": "List the available self-hosted AI agent stacks and link to their install guides at /guide/{stackId}.",
+      "tags": [
+        "guides",
+        "self-hosted",
+        "ai-agents",
+        "catalog"
+      ]
+    },
+    {
+      "id": "read-setup-instructions",
+      "name": "Read setup instructions",
+      "description": "Read the personalized, copy-and-paste installation steps for a stack, including server prerequisites and model selection notes.",
+      "tags": [
+        "setup",
+        "installation",
+        "vps",
+        "ollama",
+        "llm"
+      ]
+    },
+    {
+      "id": "troubleshoot-installs",
+      "name": "Troubleshoot installs",
+      "description": "Look up fixes for common installation and runtime problems with self-hosted AI agent stacks.",
+      "tags": [
+        "troubleshooting",
+        "debugging",
+        "support"
+      ]
+    },
+    {
+      "id": "check-stack-faq",
+      "name": "Check stack FAQ",
+      "description": "Answer frequently asked questions about Agent Deploy and the stacks it covers.",
+      "tags": [
+        "faq",
+        "help"
+      ]
+    }
+  ]
+}
