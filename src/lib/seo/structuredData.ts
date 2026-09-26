@@ -1,4 +1,4 @@
-export const SITE_URL = "https://local.mikedemo.dev";
+export const SITE_URL = "https://ai.mikedemo.dev";
 export const SITE_NAME = "Agent Deploy";
 
 export type JsonLd = Record<string, unknown>;
