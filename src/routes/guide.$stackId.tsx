@@ -11,7 +11,7 @@ import { CopyLinkButton } from "@/components/CopyLinkButton";
 import { parsePermalinkSearch, resolveSelection } from "@/lib/permalink";
 import { breadcrumbSchema, jsonLdScript } from "@/lib/seo/structuredData";
 
-const SITE_URL = "https://local.mikedemo.dev";
+const SITE_URL = "https://ai.mikedemo.dev";
 
 /**
  * A public guide has no chosen server, so it must default to a system the stack
