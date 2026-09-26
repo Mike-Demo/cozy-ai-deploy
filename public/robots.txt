@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://local.mikedemo.dev/sitemap.xml
+Sitemap: https://ai.mikedemo.dev/sitemap.xml
