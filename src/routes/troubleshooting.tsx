@@ -15,9 +15,9 @@ export const Route = createFileRoute("/troubleshooting")({
       { property: "og:description", content: "Common problems and fixes for self-hosted AI agent stacks." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:url", content: "https://local.mikedemo.dev/troubleshooting" },
+      { property: "og:url", content: "https://ai.mikedemo.dev/troubleshooting" },
     ],
-    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/troubleshooting" }],
+    links: [{ rel: "canonical", href: "https://ai.mikedemo.dev/troubleshooting" }],
     scripts: [
       jsonLdScript(
         webPageSchema({
