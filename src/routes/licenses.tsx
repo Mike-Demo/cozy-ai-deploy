@@ -57,6 +57,20 @@ function LicensesPage() {
           Agent Deploy is built on other people&apos;s work. Here is what it uses
           and under which license.
         </p>
+        <div className="mt-4">
+        <a
+          href="https://app.aikido.dev/audit-report/external/smlvhLoPnScdRnVeF7TjudEr/request"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Aikido Security Audit Report (opens in new tab)"
+        >
+          <img
+            src="https://app.aikido.dev/assets/badges/full-light-theme.svg"
+            alt="Aikido Security Audit Report"
+            height={40}
+          />
+        </a>
+        </div>
 
         <div className="mt-10 space-y-10">
           {creditGroups.map((group) => (
