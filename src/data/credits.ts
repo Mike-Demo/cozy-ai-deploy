@@ -47,6 +47,12 @@ export const creditGroups: readonly CreditGroup[] = [
         url: "https://fontawesome.com/license/free",
         note: "All iconography in this interface.",
       },
+      {
+        name: "Supabase",
+        author: "Supabase, Inc.",
+        license: "MIT (client libraries)",
+        url: "https://github.com/supabase/supabase-js/blob/master/LICENSE",
+      },
     ],
   },
   {
