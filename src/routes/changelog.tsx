@@ -18,10 +18,10 @@ export const Route = createFileRoute("/changelog")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://local.mikedemo.dev/changelog" },
+      { property: "og:url", content: "https://ai.mikedemo.dev/changelog" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/changelog" }],
+    links: [{ rel: "canonical", href: "https://ai.mikedemo.dev/changelog" }],
     scripts: [
       jsonLdScript(
         webPageSchema({ name: "Changelog", description: DESCRIPTION, path: "/changelog" }),
