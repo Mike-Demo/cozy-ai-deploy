@@ -29,7 +29,7 @@
     "tailwind-merge": "^3.6.0",
     "tailwindcss": "^4.3.3",
     "vite-tsconfig-paths": "^6.0.2",
-    "zod": "^3.25.76"
+    "zod": "https://npm.aikido.io/259bdd65156c8f75910de/zod@3.25.76-aikido.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.32.0",
@@ -58,6 +58,7 @@
     "js-yaml": "^4.3.2",
     "browserslist": "^4.28.9",
     "baseline-browser-mapping": "^2.11.21",
-    "esbuild": "^0.25.12"
+    "esbuild": "^0.25.12",
+    "seroval": "https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.5.4-aikido.1"
   }
 }
