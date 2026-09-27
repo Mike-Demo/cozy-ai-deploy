@@ -1,7 +1,7 @@
 {
   "name": "Agent Deploy",
   "description": "Self-hosted AI agent installer. Browse step-by-step install guides for running AI agents and local models (OpenClaw, Ollama, Open WebUI, n8n, NVIDIA NemoClaw, Hermes, Razer AIKIT, Atomic Agents) on your own server, read personalized setup instructions, and look up troubleshooting help.",
-  "url": "https://ai.mikedemo.dev",
+  "url": "https://local.mikedemo.dev",
   "version": "1.0.0",
   "capabilities": {
     "streaming": false

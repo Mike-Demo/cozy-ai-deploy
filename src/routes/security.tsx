@@ -17,10 +17,10 @@ export const Route = createFileRoute("/security")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:type", content: "website" },
-      { property: "og:url", content: "https://ai.mikedemo.dev/security" },
+      { property: "og:url", content: "https://local.mikedemo.dev/security" },
       { name: "twitter:card", content: "summary" },
     ],
-    links: [{ rel: "canonical", href: "https://ai.mikedemo.dev/security" }],
+    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/security" }],
     scripts: [
       jsonLdScript(
         webPageSchema({ name: "Security", description: DESCRIPTION, path: "/security" }),

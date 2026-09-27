@@ -25,9 +25,9 @@ export const Route = createFileRoute("/setup")({
       { property: "og:description", content: "Generate a personalized VPS install guide for self-hosted AI agents." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
-      { property: "og:url", content: "https://ai.mikedemo.dev/setup" },
+      { property: "og:url", content: "https://local.mikedemo.dev/setup" },
     ],
-    links: [{ rel: "canonical", href: "https://ai.mikedemo.dev/setup" }],
+    links: [{ rel: "canonical", href: "https://local.mikedemo.dev/setup" }],
     scripts: [
       jsonLdScript(
         webPageSchema({

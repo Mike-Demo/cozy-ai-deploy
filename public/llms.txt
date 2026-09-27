@@ -16,28 +16,28 @@ Guide selections can be shared as permalink URLs (the `/setup` page encodes choi
 
 ## Key pages
 
-- Home and stack catalog: https://ai.mikedemo.dev/
-- Guide builder (interactive questionnaire): https://ai.mikedemo.dev/setup
-- Troubleshooting: https://ai.mikedemo.dev/troubleshooting
-- FAQ: https://ai.mikedemo.dev/faq
-- Security practices: https://ai.mikedemo.dev/security
-- Changelog: https://ai.mikedemo.dev/changelog
-- Open source and credits: https://ai.mikedemo.dev/licenses
+- Home and stack catalog: https://local.mikedemo.dev/
+- Guide builder (interactive questionnaire): https://local.mikedemo.dev/setup
+- Troubleshooting: https://local.mikedemo.dev/troubleshooting
+- FAQ: https://local.mikedemo.dev/faq
+- Security practices: https://local.mikedemo.dev/security
+- Changelog: https://local.mikedemo.dev/changelog
+- Open source and credits: https://local.mikedemo.dev/licenses
 
 ## Install guides
 
-- OpenClaw — https://ai.mikedemo.dev/guide/openclaw — Install OpenClaw and Ollama on your VPS to run local models; your AI environment stays online even when your laptop is off.
-- Ollama — https://ai.mikedemo.dev/guide/ollama — Install just Ollama and the models you want, exposed over HTTP from your own apps, with no extra dashboard or agent layer.
-- Open WebUI — https://ai.mikedemo.dev/guide/openwebui — Install Ollama plus Open WebUI to chat with your models through a clean web interface running on your own server.
-- n8n — https://ai.mikedemo.dev/guide/n8n — Install n8n workflow automation alongside Ollama so your workflows can use local LLMs without sending data to third parties.
-- NVIDIA NemoClaw — https://ai.mikedemo.dev/guide/nemoclaw — Deploy NVIDIA NemoClaw on a GPU-equipped VPS to run agent workflows accelerated by NVIDIA inference tools.
-- Hermes — https://ai.mikedemo.dev/guide/hermes — Install Hermes models through Ollama and run them locally on your VPS; Hermes models are known for strong instruction following.
-- Razer AIKIT — https://ai.mikedemo.dev/guide/razeraikit — Install Razer AIKIT on a compatible VPS or edge device to run optimized local inference pipelines and manage connected devices.
-- Atomic Agents — https://ai.mikedemo.dev/guide/atomic-agents — Install the Atomic Agents Python framework alongside Ollama to build agent pipelines from small, testable pieces.
+- OpenClaw — https://local.mikedemo.dev/guide/openclaw — Install OpenClaw and Ollama on your VPS to run local models; your AI environment stays online even when your laptop is off.
+- Ollama — https://local.mikedemo.dev/guide/ollama — Install just Ollama and the models you want, exposed over HTTP from your own apps, with no extra dashboard or agent layer.
+- Open WebUI — https://local.mikedemo.dev/guide/openwebui — Install Ollama plus Open WebUI to chat with your models through a clean web interface running on your own server.
+- n8n — https://local.mikedemo.dev/guide/n8n — Install n8n workflow automation alongside Ollama so your workflows can use local LLMs without sending data to third parties.
+- NVIDIA NemoClaw — https://local.mikedemo.dev/guide/nemoclaw — Deploy NVIDIA NemoClaw on a GPU-equipped VPS to run agent workflows accelerated by NVIDIA inference tools.
+- Hermes — https://local.mikedemo.dev/guide/hermes — Install Hermes models through Ollama and run them locally on your VPS; Hermes models are known for strong instruction following.
+- Razer AIKIT — https://local.mikedemo.dev/guide/razeraikit — Install Razer AIKIT on a compatible VPS or edge device to run optimized local inference pipelines and manage connected devices.
+- Atomic Agents — https://local.mikedemo.dev/guide/atomic-agents — Install the Atomic Agents Python framework alongside Ollama to build agent pipelines from small, testable pieces.
 
 ## Machine-readable endpoints
 
-- https://ai.mikedemo.dev/llms.txt — this document
-- https://ai.mikedemo.dev/.well-known/agent.json — A2A-style agent card
-- https://ai.mikedemo.dev/sitemap.xml — full page list
-- https://ai.mikedemo.dev/robots.txt — crawler policy
+- https://local.mikedemo.dev/llms.txt — this document
+- https://local.mikedemo.dev/.well-known/agent.json — A2A-style agent card
+- https://local.mikedemo.dev/sitemap.xml — full page list
+- https://local.mikedemo.dev/robots.txt — crawler policy
