@@ -18,6 +18,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      {
+        httpEquiv: "Content-Security-Policy",
+        content:
+          "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://app.aikido.dev; font-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net; form-action 'self' https://codepen.io; frame-ancestors 'self'; base-uri 'self'; object-src 'none'",
+      },
       { title: "Agent Deploy — Self-hosted AI install guides" },
       {
         name: "description",
