@@ -21,7 +21,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       {
         httpEquiv: "Content-Security-Policy",
         content:
-          "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://app.aikido.dev; font-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net; form-action 'self' https://codepen.io; frame-ancestors 'self'; base-uri 'self'; object-src 'none'",
+          "default-src 'self'; script-src 'self' 'unsafe-inline' https://umami-lite.view.fast; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net; img-src 'self' data: https://app.aikido.dev; font-src 'self' data:; connect-src 'self' https://cdn.jsdelivr.net https://umami-lite.view.fast; form-action 'self' https://codepen.io; frame-ancestors 'self'; base-uri 'self'; object-src 'none'",
       },
       { title: "Agent Deploy — Self-hosted AI install guides" },
       {
@@ -73,6 +73,11 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en" className={WEB_AWESOME_HTML_CLASSES}>
       <head>
         <HeadContent />
+        <script
+          defer
+          src="https://umami-lite.view.fast/tracker.js"
+          data-website-id="ccf157da-2f0b-495a-811d-7f4f2e3d0bac"
+        ></script>
       </head>
       <body>
         {children}
