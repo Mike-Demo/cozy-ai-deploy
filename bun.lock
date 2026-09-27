@@ -52,7 +52,7 @@
     "js-yaml": "^4.3.2",
     "nanoid": "^3.3.18",
     "postcss": "^8.5.28",
-    "seroval": "https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.5.4-aikido.1",
+    "seroval": "https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.6.7-aikido.1",
     "sharp": "^0.35.4",
     "undici": "^7.29.0",
     "ws": "^8.21.3",
@@ -780,7 +780,7 @@
 
     "semver": ["semver@6.3.1", "", { "bin": { "semver": "bin/semver.js" } }, "sha512-BR7VvDCVHO+q2xBEWskxS6DJE1qRnb7DxzUrogb71CWoSficBxYsiAGd+Kl0mmq/MprG9yArRkyrQxTO6XjMzA=="],
 
-    "seroval": ["seroval@https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.5.4-aikido.1", {}, "sha512-/hopMoGQCvTTBEMTeQX3aGF1RYkdCxt2hPLIG2xaBscYob6Z+33Kaoy3ScWIVQLDiZc3M/kP/s0GB7fov2eNog=="],
+    "seroval": ["seroval@https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.6.7-aikido.1", {}, "sha512-nezC6bT4Z4VE+YQgT3TGLDKK3ydwi4/7iUJvEgqOQoSKViBTeRFkPu6+/rnSs+VmWy3e/Pync6Nh/LzqNLbcJg=="],
 
     "seroval-plugins": ["seroval-plugins@1.6.7", "", { "peerDependencies": { "seroval": "^1.0" } }, "sha512-4Nk35ttD3DTDJW4hgw5StsVAPeU6qnDFnULAouw6tQ7oLTV/ICXrWpsXo2EE52eSP2joUMazbVf52mFEcADqRw=="],
 
