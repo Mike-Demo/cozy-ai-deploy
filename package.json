@@ -59,6 +59,6 @@
     "browserslist": "^4.28.9",
     "baseline-browser-mapping": "^2.11.21",
     "esbuild": "^0.25.12",
-    "seroval": "https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.5.4-aikido.1"
+    "seroval": "https://npm.aikido.io/259bdd65156c8f75910de/seroval@1.6.7-aikido.1"
   }
 }
