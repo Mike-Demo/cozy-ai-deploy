@@ -110,6 +110,24 @@ function LicensesPage() {
           ))}
         </div>
 
+        <section className="mt-10">
+          <h2 className="font-heading text-xl font-semibold text-text">
+            Open source
+          </h2>
+          <p className="mt-2 text-text-muted">
+            This site&apos;s source code is{" "}
+            <a
+              href="https://github.com/Mike-Demo/cozy-ai-deploy"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-text hover:text-accent hover:underline"
+            >
+              on GitHub
+            </a>
+            .
+          </p>
+        </section>
+
         <p className="mt-10 rounded-lg border border-border bg-surface-muted p-4 text-sm text-text-muted">
           {affiliationNote}
         </p>
