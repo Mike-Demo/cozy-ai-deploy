@@ -1,0 +1,246 @@
+{
+  "boltSlidesVersion": 1,
+  "deck": {
+    "title": "Cozy AI Deploy — shipping your AI app, minus the DevOps dread",
+    "transition": "fade",
+    "font": "manrope",
+    "accent": "#f5a97f"
+  },
+  "slides": [
+    {
+      "id": "s1",
+      "position": 0,
+      "layout": "cover",
+      "props": {
+        "kicker": "Cozy AI Deploy · Open source",
+        "title": "Shipping your AI app,\n==minus the DevOps dread.==",
+        "subtitle": "A friendly deployment companion for AI-built apps — from 'it works in the builder' to 'it's live'.",
+        "foot": "github.com/Mike-Demo/cozy-ai-deploy"
+      },
+      "background": {
+        "type": "gradient",
+        "from": "#120b07",
+        "to": "#06080d",
+        "angle": 160
+      },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Set the tone: this is a cozy tool with a serious job. Creating an app got easy — getting it online didn't. Cozy AI Deploy closes that gap.",
+      "status": "none"
+    },
+    {
+      "id": "s2",
+      "position": 1,
+      "layout": "contrast",
+      "props": {
+        "kicker": "The problem",
+        "title": "Building got easy. ==Shipping didn't.==",
+        "left": {
+          "label": "In the builder",
+          "title": "It just works",
+          "points": [
+            "One click to preview",
+            "Everything pre-configured",
+            "No servers in sight"
+          ]
+        },
+        "right": {
+          "label": "On deploy day",
+          "title": "A dozen sharp edges",
+          "points": [
+            "Servers and environment variables",
+            "DNS and certificates",
+            "The gap between preview and live"
+          ]
+        }
+      },
+      "background": {
+        "type": "color",
+        "color": "var(--bg)"
+      },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Empathize with the stall: builders made creating the easy part, but between 'it works' and 'it's live' sit servers, env vars, DNS, certs. That's where momentum dies.",
+      "status": "none"
+    },
+    {
+      "id": "s3",
+      "position": 2,
+      "layout": "pillars",
+      "props": {
+        "title": "A calm, guided path ==from built to deployed.==",
+        "items": [
+          {
+            "title": "The steps you actually need",
+            "body": "In order, nothing extra — exactly what stands between your project and a live URL."
+          },
+          {
+            "title": "Human language",
+            "body": "Every prompt and message explained in plain words, no jargon without a translation."
+          },
+          {
+            "title": "Checks along the way",
+            "body": "Each stage confirms before you move on, so the next step never surprises you."
+          }
+        ]
+      },
+      "background": {
+        "type": "color",
+        "color": "var(--bg)"
+      },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "The pitch in one line: guided, ordered, explained, verified. No dashboard archaeology, no forum spelunking.",
+      "status": "none"
+    },
+    {
+      "id": "s4",
+      "position": 3,
+      "layout": "steps",
+      "props": {
+        "kicker": "How it works",
+        "title": "Built to live in ==three moves.==",
+        "items": [
+          {
+            "title": "Connect the project",
+            "body": "Point Cozy at your AI-built app and it maps what you have."
+          },
+          {
+            "title": "Walk the checklist",
+            "body": "Config, secrets, domain, go-live verification — checked off in order, in plain language."
+          },
+          {
+            "title": "Land on a live URL",
+            "body": "Confidence instead of superstition: every box ticked before it's public."
+          }
+        ]
+      },
+      "background": {
+        "type": "color",
+        "color": "var(--bg)"
+      },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Walk through the flow briefly. Emphasize go-live verification — the live URL is the finish line, not the leap of faith.",
+      "status": "none"
+    },
+    {
+      "id": "s5",
+      "position": 4,
+      "layout": "manifesto",
+      "props": {
+        "label": "Cozy by design",
+        "text": "Warm tone. No jargon without a translation. And nothing irreversible happens ==without a clear heads-up first.=="
+      },
+      "background": {
+        "type": "gradient",
+        "from": "#120b07",
+        "to": "#06080d",
+        "angle": 160
+      },
+      "animation": "fade",
+      "transition": null,
+      "nav": null,
+      "notes": "Let this breathe. This is the product philosophy: reassurance is a feature, not decoration. Especially the irreversibility guardrail.",
+      "status": "none"
+    },
+    {
+      "id": "s6",
+      "position": 5,
+      "layout": "bento",
+      "props": {
+        "kicker": "Key features",
+        "title": "What's in the box.",
+        "tiles": [
+          {
+            "k": "01",
+            "title": "Guided deploy checklist",
+            "body": "Config, secrets, domain, and verification — one clear path, in order.",
+            "c": 3,
+            "variant": "accent"
+          },
+          {
+            "k": "02",
+            "title": "Plain-language everything",
+            "body": "Every error and prompt comes with a human translation.",
+            "c": 3
+          },
+          {
+            "k": "03",
+            "title": "Secrets handled safely",
+            "body": "Environment variables set once, kept out of your code and chat logs.",
+            "c": 2
+          },
+          {
+            "k": "04",
+            "title": "Domain & DNS walkthrough",
+            "body": "Records, certificates, and HTTPS — explained before you touch them.",
+            "c": 2
+          },
+          {
+            "k": "05",
+            "title": "Go-live verification",
+            "body": "Nothing ships until the checks say it's really live.",
+            "c": 2,
+            "variant": "glow"
+          }
+        ]
+      },
+      "background": {
+        "type": "color",
+        "color": "var(--bg)"
+      },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Hit the highlights, don't read every tile. The accent tile — the guided checklist — is the core.",
+      "status": "none"
+    },
+    {
+      "id": "s7",
+      "position": 6,
+      "layout": "statement",
+      "props": {
+        "kicker": "Status",
+        "title": "A working tool, ==open source==.",
+        "body": "Cozy AI Deploy is real and shipping today. Read the code, fork it, file issues, or make it yours — it lives in the open at github.com/Mike-Demo/cozy-ai-deploy."
+      },
+      "background": {
+        "type": "color",
+        "color": "var(--bg)"
+      },
+      "animation": "cascade",
+      "transition": null,
+      "nav": null,
+      "notes": "Credibility beat: this isn't a concept. It works, and the code is public — that's the invitation to trust and to contribute.",
+      "status": "none"
+    },
+    {
+      "id": "s8",
+      "position": 7,
+      "layout": "cover",
+      "props": {
+        "kicker": "Cozy AI Deploy",
+        "title": "Your app is built. ==Let's get it live.==",
+        "subtitle": "Star it, fork it, or deploy with it — warm hugs and green checkmarks await.",
+        "foot": "github.com/Mike-Demo/cozy-ai-deploy"
+      },
+      "background": {
+        "type": "gradient",
+        "from": "#120b07",
+        "to": "#06080d",
+        "angle": 160
+      },
+      "animation": "cascade",
+      "transition": "zoom",
+      "nav": null,
+      "notes": "Close with the call to action: visit the repo, try it on your next AI-built app. Thank the audience.",
+      "status": "none"
+    }
+  ],
+  "boltSlidesId": "11011050-f9d6-4d43-8a9e-3e43af51bbaf"
+}
